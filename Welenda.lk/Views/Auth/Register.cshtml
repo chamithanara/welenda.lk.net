@@ -1,0 +1,56 @@
+﻿
+<div id="all" ng-controller="AuthCtrl">
+
+    <div id="content">
+        <div class="container">
+
+            <div class="col-md-12">
+
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">Home</a>
+                    </li>
+                    <li>New account / Register</li>
+                </ul>
+
+            </div>
+
+            <div class="col-md-12">
+                <div class="box">
+                    <h1>New account</h1>
+
+                    <p class="lead">Not our registered customer yet?</p>
+                    <p>With registration with us new world of fashion, fantastic discounts and much more opens to you! The whole process will not take you more than a minute!</p>
+                    <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
+
+                    <hr>
+
+                    <form ng-submit="submitFormRegister(user)">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" ng-model="user.name" class="form-control" id="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" ng-model="user.email" class="form-control" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" ng-model="user.password" class="form-control" id="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Re-enter Password</label>
+                            <input type="password" ng-model="user.rePassword" class="form-control" id="repassword">
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i> Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /#content -->
+</div>
+

@@ -1,0 +1,169 @@
+﻿<div id="all" ng-controller="homeProdCtrl">
+
+    <div id="content">
+
+        <div class="container">
+            <div class="col-md-12">
+                <div id="main-slider">
+                    <div class="item">
+                        <img src="~/Content/img/main-slider1.jpg" alt="" class="img-responsive">
+                    </div>
+                    <div class="item">
+                        <img class="img-responsive" src="~/Content/img/main-slider2.jpg" alt="">
+                    </div>
+                    <div class="item">
+                        <img class="img-responsive" src="~/Content/img/main-slider1.jpg" alt="">
+                    </div>
+                    <div class="item">
+                        <img class="img-responsive" src="~/Content/img/main-slider2.jpg" alt="">
+                    </div>
+                </div>
+                <!-- /#main-slider -->
+            </div>
+        </div>
+
+        <div id="advantages">
+
+            <div class="container">
+                <div class="same-height-row">
+                    <div class="col-sm-4">
+                        <div class="box same-height clickable">
+                            <div class="icon">
+                                <i class="fa fa-heart"></i>
+                            </div>
+
+                            <h3><a href="#">We love our customers</a></h3>
+                            <p>We are known to provide best possible service ever</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="box same-height clickable">
+                            <div class="icon">
+                                <i class="fa fa-tags"></i>
+                            </div>
+
+                            <h3><a href="#">Best prices</a></h3>
+                            <p>You can check that the height of the boxes adjust when longer text like this one is used in one of them.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="box same-height clickable">
+                            <div class="icon">
+                                <i class="fa fa-thumbs-up"></i>
+                            </div>
+
+                            <h3><a href="#">100% satisfaction guaranteed</a></h3>
+                            <p>On time delivery with courier service.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="hot">
+
+            <div class="box" style="padding: 0px;">
+                <div class="container">
+                    <div class="col-md-12">
+                        <h2>Hot this Week</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="col-md-3" ng-repeat="(key, value) in hotProducts">
+                    <a ng-click="getProductDetails(key, value)">
+                        <div class="item">
+                            <div class="product">
+                                <div class="flip-container">
+                                    <div class="flipper">
+                                        <div class="front">
+                                            <div href="detail.html">
+                                                <img ng-src="~/Content/img/{{value[1]}}" alt="" class="img-responsive">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div href="detail.html" class="invisible">
+                                    <img ng-src="~/Content/img/{{value[1]}}" alt="" class="img-responsive">
+                                </div>
+                                <div class="text">
+                                    <h3>{{value[0]}}</h3>
+                                    <p class="priceStrike">Rs. {{value[2]}}</p>
+                                    <p class="price">Rs. {{value[3]}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="hot">
+
+            <div class="box" style="padding: 0px;">
+                <div class="container">
+                    <div class="col-md-12">
+                        <h2>Electronics</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="col-md-3" ng-repeat="(key, value) in ElectornicsProducts">
+                    <a ng-click="getProductDetails(key, value)">
+                        <div class="item">
+                            <div class="product">
+                                <div class="flip-container">
+                                    <div class="flipper">
+                                        <div class="front">
+                                            <div href="detail.html">
+                                                <img ng-src="~/Content/img/{{value[1]}}" alt="" class="img-responsive">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div href="detail.html" class="invisible">
+                                    <img ng-src="~/Content/img/{{value[1]}}" alt="" class="img-responsive">
+                                </div>
+                                <div class="text">
+                                    <h3>{{value[0]}}</h3>
+                                    <p class="priceStrike">Rs. {{value[2]}}</p>
+                                    <p class="price">Rs. {{value[3]}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="col-md-12">
+                <div class="box slideshow">
+                    <h4>Get Inspired</h4>
+                    <p class="lead">Get the inspiration from our world class Products</p>
+                    <div id="get-inspired" class="owl-carousel owl-theme" style="height:200px">
+                        <div class="item">
+                            <a href="#">
+                                <img src="~/Content/img/getinspired1.jpg" alt="Get inspired" class="img-responsive">
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <img src="~/Content/img/getinspired2.jpg" alt="Get inspired" class="img-responsive">
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <img src="~/Content/img/getinspired3.jpg" alt="Get inspired" class="img-responsive">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
