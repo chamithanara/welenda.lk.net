@@ -149,9 +149,9 @@ h1 {
 }
 #hot h2 {
   text-transform: uppercase;
-  font-size: 16px;
-  color: #000000;
-  font-weight: 700;
+  font-size: 19px;
+  color: rgb(255, 255, 255);
+  font-weight: 900;
   text-align: center;
 }
 #hot .product-slider {
