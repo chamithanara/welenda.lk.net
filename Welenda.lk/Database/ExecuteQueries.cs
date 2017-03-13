@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Welenda.lk.Models;
@@ -18,6 +19,7 @@ namespace Welenda.lk.Database
             return database.GetDBConnection();
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public ErrorCodes CreateUser(string email, string password, string name)
         {
             if (!this.CheckEmailExist(email))
@@ -63,6 +65,7 @@ namespace Welenda.lk.Database
             }
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         private bool CheckEmailExist(string email)
         {
             using (SqlCommand command = new SqlCommand())
@@ -118,6 +121,7 @@ namespace Welenda.lk.Database
             }            
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public ResultModel LoginUser(string email, string password)
         {
             using (SqlCommand command = new SqlCommand())
@@ -172,6 +176,7 @@ namespace Welenda.lk.Database
             }
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public ResultModel GetHotProducts()
         {
             using (SqlCommand command = new SqlCommand())
@@ -243,6 +248,7 @@ namespace Welenda.lk.Database
             return new ResultModel { errorCode = ErrorCodes.success };
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public ResultModel GetElectronicsProducts()
         {
             using (SqlCommand command = new SqlCommand())
@@ -314,6 +320,7 @@ namespace Welenda.lk.Database
             return new ResultModel { errorCode = ErrorCodes.success };
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public ResultModel GetProductDetails(string productId)
         {
             using (SqlCommand command = new SqlCommand())
@@ -383,6 +390,7 @@ namespace Welenda.lk.Database
             return new ResultModel { errorCode = ErrorCodes.success };
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public ResultModel GetProductInfo(string productId)
         {
             using (SqlCommand command = new SqlCommand())
