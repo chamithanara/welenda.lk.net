@@ -38,7 +38,7 @@
                         <a style="text-decoration: none;">Hello {{username}}!</a>
                     </li>
                     <li>
-                        <a href="contact.html">Contact</a>
+                        <a href="@Url.Action("Index", "Contact")">Contact</a>
                     </li>
                     <li ng-if="isLoggedIn">
                         <a ng-click="logoutUser()">Logout</a>
@@ -115,30 +115,31 @@
                         <a href="@Url.Action("Index", "Home")">Home</a>
                     </li>
                     <li class="dropdown yamm-fw">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Electronics <b class="caret"></b></a>
+                        <a href="@Url.Action("Index", "Category", new {type=0, catergory="electronics"})" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Electronics <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
                                 <div class="yamm-content">
                                     <div class="row">
                                         <div class="col-sm-3">
-                                            <h5>Smart Watches</h5>
+                                            <h5><a href="@Url.Action("Index", "Category", new {catergory="smartwatches"})">Smart Watches</a></h5>
                                             <ul>
                                                 <li>
-                                                    <a href="category.html">Apple</a>
+                                                    <a href="@Url.Action("Index", "Category", new {catergory="apple"})">Apple</a>
                                                 </li>
                                                 <li>
-                                                    <a href="category.html">Xiaomi</a>
+                                                    <a href="@Url.Action("Index", "Category", new {catergory="xiaomiSmartWatch"})">Xiaomi</a>
                                                 </li>
                                                 <li>
-                                                    <a href="category.html">Samsung</a>
+                                                    <a href="@Url.Action("Index", "Category", new {catergory="samsung"})">Samsung</a>
                                                 </li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-3">
-                                            <h5>Fitness Trackers</h5>
+
+                                            <h5><a href="@Url.Action("Index", "Category", new {catergory="Fitnesstrackers"})">Fitness Trackers</a></h5>
                                             <ul>
                                                 <li>
-                                                    <a href="category.html">Xiaomi</a>
+                                                    <a href="@Url.Action("Index", "Category", new {catergory= "xiaomiFitnessTracker" })">Xiaomi</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -165,7 +166,7 @@
                     </li>
 
                     <li class="dropdown yamm-fw">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Toys <b class="caret"></b></a>
+                        <a href="@Url.Action("Main", "Category", new {catergory= "toys"})" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Toys <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
                                 <div class="yamm-content">
@@ -173,10 +174,10 @@
                                         <div class="col-sm-6">
                                             <ul>
                                                 <li>
-                                                    <a href="category.html">Hot Wheels</a>
+                                                    <a href="@Url.Action("Index", "Category", new {catergory= "hotwheels" })">Hot Wheels</a>
                                                 </li>
                                                 <li>
-                                                    <a href="category.html">Models</a>
+                                                    <a href="@Url.Action("Index", "Category", new {catergory= "carmodels" })">Model Cars</a>
                                                 </li>
                                             </ul>
                                         </div>

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="welendadbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="productdetail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mainimageurl" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="subimageurl" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="productid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="product" Relationship="Self.FK_productdetail_products" FromRole="productdetail" ToRole="products" />
+  </EntityType>
+  <EntityType Name="productinfo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sectioncontent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="productid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="product" Relationship="Self.FK_productinfo_products" FromRole="productinfo" ToRole="products" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="200" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="imgurl" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="oldprice" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="newprice" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="ishotproduct" Type="Boolean" />
+    <Property Name="mainCategory" Type="Int32" />
+    <Property Name="mainSubCategory" Type="Int32" />
+    <Property Name="subCategory" Type="Int32" />
+    <Property Name="isinhomepage" Type="Boolean" />
+    <NavigationProperty Name="productdetails" Relationship="Self.FK_productdetail_products" FromRole="products" ToRole="productdetail" />
+    <NavigationProperty Name="productinfoes" Relationship="Self.FK_productinfo_products" FromRole="products" ToRole="productinfo" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="email" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="uid" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_productdetail_products">
+    <End Role="products" Type="Self.product" Multiplicity="1" />
+    <End Role="productdetail" Type="Self.productdetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="productdetail">
+        <PropertyRef Name="productid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_productinfo_products">
+    <End Role="products" Type="Self.product" Multiplicity="1" />
+    <End Role="productinfo" Type="Self.productinfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="productinfo">
+        <PropertyRef Name="productid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="welendadbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="productdetails" EntityType="Self.productdetail" />
+    <EntitySet Name="productinfoes" EntityType="Self.productinfo" />
+    <EntitySet Name="products" EntityType="Self.product" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <AssociationSet Name="FK_productdetail_products" Association="Self.FK_productdetail_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="productdetail" EntitySet="productdetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_productinfo_products" Association="Self.FK_productinfo_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="productinfo" EntitySet="productinfoes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

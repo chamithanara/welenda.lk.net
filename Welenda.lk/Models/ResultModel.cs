@@ -11,10 +11,16 @@ namespace Welenda.lk.Models
     {
         public ErrorCodes errorCode { get; set; }
 
+        public string categoryTitle { get; set; }
+
         public List<string> result { get; set; }
         
         public Dictionary<string, List<string>> hotProducts { get; set; }
 
+        public Dictionary<string, string> productsInfo { get; set; }
+
         public Dictionary<string, List<string>> ElectornicsProducts { get; set; }
+
+        public Dictionary<string, List<string>> ToyProducts { get; set; }        
     }
 }

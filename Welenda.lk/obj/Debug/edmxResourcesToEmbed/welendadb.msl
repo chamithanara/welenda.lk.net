@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="welendadbModelStoreContainer" CdmEntityContainer="welendadbEntities">
+    <EntitySetMapping Name="productdetails">
+      <EntityTypeMapping TypeName="welendadbModel.productdetail">
+        <MappingFragment StoreEntitySet="productdetail">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="mainimageurl" ColumnName="mainimageurl" />
+          <ScalarProperty Name="subimageurl" ColumnName="subimageurl" />
+          <ScalarProperty Name="details" ColumnName="details" />
+          <ScalarProperty Name="productid" ColumnName="productid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="productinfoes">
+      <EntityTypeMapping TypeName="welendadbModel.productinfo">
+        <MappingFragment StoreEntitySet="productinfo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="sectioncontent" ColumnName="sectioncontent" />
+          <ScalarProperty Name="productid" ColumnName="productid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="welendadbModel.product">
+        <MappingFragment StoreEntitySet="products">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="imgurl" ColumnName="imgurl" />
+          <ScalarProperty Name="oldprice" ColumnName="oldprice" />
+          <ScalarProperty Name="newprice" ColumnName="newprice" />
+          <ScalarProperty Name="ishotproduct" ColumnName="ishotproduct" />
+          <ScalarProperty Name="mainCategory" ColumnName="mainCategory" />
+          <ScalarProperty Name="mainSubCategory" ColumnName="mainSubCategory" />
+          <ScalarProperty Name="subCategory" ColumnName="subCategory" />
+          <ScalarProperty Name="isinhomepage" ColumnName="isinhomepage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="welendadbModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="uid" ColumnName="uid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

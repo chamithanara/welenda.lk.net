@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Text;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using Welenda.lk.Models;
 using static Welenda.lk.Models.AuthErrorCodes;
+using static Welenda.lk.Models.ProductModel;
+using Welenda.lk.External;
 
 namespace Welenda.lk.Database
 {
@@ -255,7 +257,7 @@ namespace Welenda.lk.Database
             {
                 command.Connection = getConnection();
                 command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT * FROM [products] where isinhomepage = 1";
+                command.CommandText = "SELECT * FROM [products] where mainCategory = 0";
 
                 try
                 {
@@ -302,6 +304,78 @@ namespace Welenda.lk.Database
                             if (str.Count != 0)
                             {
                                 return new ResultModel { errorCode = ErrorCodes.success, ElectornicsProducts = str };
+                            }
+                        }
+                    }
+                }
+                catch (SqlException e)
+                {
+                    var msg = e.Message;
+                    return new ResultModel { errorCode = ErrorCodes.exception };
+                }
+                finally
+                {
+                    command.Connection.Close();
+                }
+            }
+
+            return new ResultModel { errorCode = ErrorCodes.success };
+        }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public ResultModel GetToyProducts()
+        {
+            using (SqlCommand command = new SqlCommand())
+            {
+                command.Connection = getConnection();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "SELECT * FROM [products] where mainCategory = 1";
+
+                try
+                {
+                    if (command.Connection.State == ConnectionState.Closed)
+                    {
+                        command.Connection.Open();
+                    }
+
+                    lock (this)
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            Dictionary<string, List<string>> str = new Dictionary<string, List<string>>();
+
+                            while (reader.Read())
+                            {
+                                var data = new List<string>();
+                                var id = string.Empty;
+
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                {
+                                    if (i % 9 == 0)
+                                    {
+                                        id = reader.GetValue(i).ToString().Trim();
+                                        data = new List<string>();
+                                    }
+                                    else if (i % 9 == 8)
+                                    {
+                                        data.Add(reader.GetValue(i).ToString().Trim());
+                                        str.Add(id, data);
+                                    }
+                                    else
+                                    {
+                                        data.Add(reader.GetValue(i).ToString().Trim());
+                                    }
+                                }
+                            }
+
+                            if (!reader.IsClosed)
+                            {
+                                reader.Close();
+                            }
+
+                            if (str.Count != 0)
+                            {
+                                return new ResultModel { errorCode = ErrorCodes.success, ToyProducts = str };
                             }
                         }
                     }
@@ -369,9 +443,11 @@ namespace Welenda.lk.Database
                                 reader.Close();
                             }
 
+                            var prodInfo = GetProductMoreDetails(productId);
+
                             if (str.Count != 0)
                             {
-                                return new ResultModel { errorCode = ErrorCodes.success, result = str };
+                                return new ResultModel { errorCode = ErrorCodes.success, result = str, productsInfo = prodInfo };
                             }
                         }
                     }
@@ -388,6 +464,79 @@ namespace Welenda.lk.Database
             }
 
             return new ResultModel { errorCode = ErrorCodes.success };
+        }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public Dictionary<string, string> GetProductMoreDetails(string productId)
+        {
+            using (SqlCommand command = new SqlCommand())
+            {
+                command.Connection = getConnection();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "SELECT * FROM [productinfo] where productid = @productId";
+                command.Parameters.AddWithValue("@productId", Convert.ToInt32(productId));
+
+                try
+                {
+                    if (command.Connection.State == ConnectionState.Closed)
+                    {
+                        command.Connection.Open();
+                    }
+
+                    lock (this)
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            Dictionary<string, string> str = new Dictionary<string, string>();
+
+                            while (reader.Read())
+                            {
+                                var title = String.Empty;
+                                var info = String.Empty;
+
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                {
+                                    if (i % 4 == 0)
+                                    {
+                                        title = String.Empty;
+                                        info = String.Empty;
+                                    }
+                                    else if (i % 4 == 2)
+                                    {
+                                        title = reader.GetValue(i).ToString().Trim();
+                                    }
+                                    else if (i % 4 == 3)
+                                    {
+                                        info = reader.GetValue(i).ToString().Trim();
+                                    }
+
+                                }
+                            }
+
+                            if (str.Count != 0)
+                            {
+                                return str;
+                            }
+
+                            if (!reader.IsClosed)
+                            {
+                                reader.Close();
+                            }
+                        }
+                    }
+                }
+                catch (SqlException e)
+                {
+                    var msg = e.Message;
+                    return new Dictionary<string, string>();
+                }
+                finally
+                {
+                    command.Connection.Close();
+                }
+            }
+
+            return new Dictionary<string, string>();
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
@@ -449,5 +598,98 @@ namespace Welenda.lk.Database
 
             return new ResultModel { errorCode = ErrorCodes.success };
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public ResultModel GetProductsForCategory(string category)
+        {
+            var catergoryDetails = new CategoryDetails().GetDategoryDetails(category);
+
+            using (SqlCommand command = new SqlCommand())
+            {
+                command.Connection = getConnection();
+                command.CommandType = CommandType.Text;
+
+                if (catergoryDetails.fieldName.Equals("mainCategory"))
+                {
+                    command.CommandText = "SELECT * FROM [products] where mainCategory = @categoryId";
+                }
+                else if (catergoryDetails.fieldName.Equals("mainSubCategory"))
+                {
+                    command.CommandText = "SELECT * FROM [products] where mainSubCategory = @categoryId";
+                }
+                else if (catergoryDetails.fieldName.Equals("subCategory"))
+                {
+                    command.CommandText = "SELECT * FROM [products] where subCategory = @categoryId";
+                }
+                
+                command.Parameters.AddWithValue("@categoryId", catergoryDetails.categoryId);
+
+                try
+                {
+                    if (command.Connection.State == ConnectionState.Closed)
+                    {
+                        command.Connection.Open();
+                    }
+
+                    lock (this)
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            Dictionary<string, List<string>> str = new Dictionary<string, List<string>>();
+
+                            while (reader.Read())
+                            {
+                                var data = new List<string>();
+                                var id = string.Empty;
+
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                {
+                                    if (i % 9 == 0)
+                                    {
+                                        id = reader.GetValue(i).ToString().Trim();
+                                        data = new List<string>();
+                                    }
+                                    else if (i % 9 == 8)
+                                    {
+                                        data.Add(reader.GetValue(i).ToString().Trim());
+                                        str.Add(id, data);
+                                    }
+                                    else
+                                    {
+                                        data.Add(reader.GetValue(i).ToString().Trim());
+                                    }
+                                }
+                            }
+
+                            if (!reader.IsClosed)
+                            {
+                                reader.Close();
+                            }
+
+                            if (str.Count != 0)
+                            {
+                                return new ResultModel { errorCode = ErrorCodes.success, ElectornicsProducts = str, categoryTitle = catergoryDetails.categoryTitle };
+                            }
+                            else
+                            {
+                                return new ResultModel { errorCode = ErrorCodes.success, categoryTitle = catergoryDetails.categoryTitle };
+                            }
+                        }
+                    }
+                }
+                catch (SqlException e)
+                {
+                    var msg = e.Message;
+                    return new ResultModel { errorCode = ErrorCodes.exception };
+                }
+                finally
+                {
+                    command.Connection.Close();
+                }
+            }
+
+            return new ResultModel { errorCode = ErrorCodes.success };
+        }        
     }
+    
 }

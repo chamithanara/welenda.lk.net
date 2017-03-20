@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="welendadbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="productdetail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mainimageurl" Type="nchar" MaxLength="100" />
+    <Property Name="subimageurl" Type="nchar" MaxLength="100" />
+    <Property Name="details" Type="text" />
+    <Property Name="productid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="productinfo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="text" Nullable="false" />
+    <Property Name="sectioncontent" Type="text" Nullable="false" />
+    <Property Name="productid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="products">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nchar" MaxLength="200" Nullable="false" />
+    <Property Name="imgurl" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="oldprice" Type="nchar" MaxLength="20" />
+    <Property Name="newprice" Type="nchar" MaxLength="20" />
+    <Property Name="ishotproduct" Type="bit" />
+    <Property Name="mainCategory" Type="int" />
+    <Property Name="mainSubCategory" Type="int" />
+    <Property Name="subCategory" Type="int" />
+    <Property Name="isinhomepage" Type="bit" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="email" Type="nchar" MaxLength="40" Nullable="false" />
+    <Property Name="password" Type="nchar" MaxLength="40" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="40" Nullable="false" />
+    <Property Name="uid" Type="nchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_productdetail_products">
+    <End Role="products" Type="Self.products" Multiplicity="1" />
+    <End Role="productdetail" Type="Self.productdetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="productdetail">
+        <PropertyRef Name="productid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_productinfo_products">
+    <End Role="products" Type="Self.products" Multiplicity="1" />
+    <End Role="productinfo" Type="Self.productinfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="productinfo">
+        <PropertyRef Name="productid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="welendadbModelStoreContainer">
+    <EntitySet Name="productdetail" EntityType="Self.productdetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="productinfo" EntityType="Self.productinfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_productdetail_products" Association="Self.FK_productdetail_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="productdetail" EntitySet="productdetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_productinfo_products" Association="Self.FK_productinfo_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="productinfo" EntitySet="productinfo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -44,6 +44,22 @@ app.controller('homeProdCtrl', function ($scope) {
                     $scope.ElectornicsProducts = data.ElectornicsProducts;
                 });
             }
+
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "Home/GetToyProducts",
+            })
+            .success(function (data) {
+                if (data != null) {
+                    $scope.$apply(function () {
+                        $scope.ToyProducts = data.ToyProducts;
+                    });
+                }
+            })
+            .fail(function (xhr) {
+                alert(xhr.responseText);
+            });
         })
         .fail(function (xhr) {
             alert(xhr.responseText);

@@ -29,5 +29,13 @@ namespace Welenda.lk.Controllers
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetToyProducts()
+        {
+            var execute = new ExecuteQueries();
+            var result = execute.GetToyProducts();
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }
