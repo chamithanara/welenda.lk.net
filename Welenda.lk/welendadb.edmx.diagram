@@ -4,13 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3daa2e722ae14fcf96fc7f07002abdda" Name="Diagram1">
-        <EntityTypeShape EntityType="welendadbModel.productdetail" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="welendadbModel.productinfo" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="welendadbModel.product" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+      <Diagram DiagramId="15a679071b2041d1ae5da138bdae2128" Name="Diagram1">
+        <EntityTypeShape EntityType="welendadbModel.productdetail" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="welendadbModel.productinfo" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="welendadbModel.product" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="welendadbModel.user" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="welendadbModel.usertobasket" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
         <AssociationConnector Association="welendadbModel.FK_productdetail_products" ManuallyRouted="false" />
-        <AssociationConnector Association="welendadbModel.FK_productinfo_products" ManuallyRouted="false" />
+        <AssociationConnector Association="welendadbModel.FK_productinfo_products1" ManuallyRouted="false" />
+        <AssociationConnector Association="welendadbModel.FK_usertobasket_products" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -13,9 +13,10 @@ namespace Welenda.lk.Controllers
         {
             var execute = new ExecuteQueries();
             var result = execute.GetProductDetails(productdId);
-            var prodInfo = execute.GetProductInfo(productdId);
-            ViewBag.result = result.result;
-            ViewBag.prodInfo = prodInfo.result;
+            var prodSubDetails = execute.GetProductSubDetails(productdId);
+            ViewBag.prodMainDetails = result.productDetailResult;
+            ViewBag.prodSubDetails = prodSubDetails.productResult;
+            ViewBag.productInfo = result.productInfoResult;
 
             return View();
         }

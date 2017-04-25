@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="all" ng-controller="shoppingCartCtrl">
+
+    <div id="content">
+        <div class="container">
+
+            <div class="col-md-12">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="@Url.Action("Index", "Home")">Home</a>
+                    </li>
+                    <li>Shopping cart</li>
+                </ul>
+            </div>
+
+            <div class="col-md-9" id="basket">
+
+                <div class="box">
+
+                    <form method="post" action="checkout1.html">
+
+                        <h1 style="font-size: 24px;">Shopping cart</h1>
+                        <p class="text-muted">You currently have @ViewBag.productsList.Count item(s) in your cart.</p>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">Product</th>
+                                        <th>Quantity</th>
+                                        <th>Unit price</th>
+                                        <th>Discount</th>
+                                        <th colspan="2">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  @{var iterator = 0;}
+                                  @foreach (var product in ViewBag.productsList)
+                                  {
+                                    <tr>
+                                        <td>                                            
+                                            <img src="~/Content/img/@product.imgurl" alt="White Blouse Armani">
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("Index", "Product", new { productdId = product.id})">@product.title</a>
+                                        </td>
+                                        <td>
+                                            <input ng-change="quantityChange(@product)" type="number" ng-model="quantity" ng-init="quantity=1" class="form-control">
+                                        </td>
+                                        <td>{{@product.newprice}}.00</td>
+                                        <td>0.00</td>
+                                        <td>{{@product.newprice}}.00</td>
+                                        <td>
+                                            <a href="#"><i class="fa fa-trash-o"></i></a>
+                                        </td>
+                                    </tr>
+                                    iterator++;
+                                  }
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="5">Total</th>
+                                        <th colspan="2">$446.00</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+                        </div>
+                        <!-- /.table-responsive -->
+
+                        <div class="box-footer">
+                            <div class="pull-left">
+                                <a ng-click="gobackHistory()" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
+                            </div>
+                            <div class="pull-right">
+                                <button type="submit" class="btn btn-primary">
+                                    Proceed to checkout <i class="fa fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+                <!-- /.box -->
+
+            </div>
+            <!-- /.col-md-9 -->
+
+            <div class="col-md-3">
+                <div class="box" id="order-summary">
+                    <div class="box-header">
+                        <h3>Order summary</h3>
+                    </div>
+                    <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>Order subtotal</td>
+                                    <th>$446.00</th>
+                                </tr>
+                                <tr>
+                                    <td>Shipping and handling</td>
+                                    <th>$10.00</th>
+                                </tr>
+                                <tr>
+                                    <td>Tax</td>
+                                    <th>$0.00</th>
+                                </tr>
+                                <tr class="total">
+                                    <td>Total</td>
+                                    <th>$456.00</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- /.col-md-3 -->
+
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /#content -->
+</div>
+

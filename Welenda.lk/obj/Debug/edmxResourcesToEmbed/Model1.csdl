@@ -18,9 +18,8 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="sectioncontent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="imageurl" Type="String" MaxLength="300" FixedLength="true" Unicode="true" />
     <Property Name="productid" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="product" Relationship="Self.FK_productinfo_products1" FromRole="productinfo" ToRole="products" />
+    <NavigationProperty Name="product" Relationship="Self.FK_productinfo_products" FromRole="productinfo" ToRole="products" />
   </EntityType>
   <EntityType Name="product">
     <Key>
@@ -37,8 +36,7 @@
     <Property Name="subCategory" Type="Int32" />
     <Property Name="isinhomepage" Type="Boolean" />
     <NavigationProperty Name="productdetails" Relationship="Self.FK_productdetail_products" FromRole="products" ToRole="productdetail" />
-    <NavigationProperty Name="productinfoes" Relationship="Self.FK_productinfo_products1" FromRole="products" ToRole="productinfo" />
-    <NavigationProperty Name="usertobaskets" Relationship="Self.FK_usertobasket_products" FromRole="products" ToRole="usertobasket" />
+    <NavigationProperty Name="productinfoes" Relationship="Self.FK_productinfo_products" FromRole="products" ToRole="productinfo" />
   </EntityType>
   <EntityType Name="user">
     <Key>
@@ -49,15 +47,6 @@
     <Property Name="password" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="name" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="uid" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
-  </EntityType>
-  <EntityType Name="usertobasket">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="userId" Type="Int32" Nullable="false" />
-    <Property Name="productId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="product" Relationship="Self.FK_usertobasket_products" FromRole="usertobasket" ToRole="products" />
   </EntityType>
   <Association Name="FK_productdetail_products">
     <End Role="products" Type="Self.product" Multiplicity="1" />
@@ -71,7 +60,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_productinfo_products1">
+  <Association Name="FK_productinfo_products">
     <End Role="products" Type="Self.product" Multiplicity="1" />
     <End Role="productinfo" Type="Self.productinfo" Multiplicity="*" />
     <ReferentialConstraint>
@@ -83,35 +72,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_usertobasket_products">
-    <End Role="products" Type="Self.product" Multiplicity="1" />
-    <End Role="usertobasket" Type="Self.usertobasket" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="products">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="usertobasket">
-        <PropertyRef Name="productId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="welendadbContext" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="productdetails" EntityType="Self.productdetail" />
     <EntitySet Name="productinfoes" EntityType="Self.productinfo" />
     <EntitySet Name="products" EntityType="Self.product" />
     <EntitySet Name="users" EntityType="Self.user" />
-    <EntitySet Name="usertobaskets" EntityType="Self.usertobasket" />
     <AssociationSet Name="FK_productdetail_products" Association="Self.FK_productdetail_products">
       <End Role="products" EntitySet="products" />
       <End Role="productdetail" EntitySet="productdetails" />
     </AssociationSet>
-    <AssociationSet Name="FK_productinfo_products1" Association="Self.FK_productinfo_products1">
+    <AssociationSet Name="FK_productinfo_products" Association="Self.FK_productinfo_products">
       <End Role="products" EntitySet="products" />
       <End Role="productinfo" EntitySet="productinfoes" />
-    </AssociationSet>
-    <AssociationSet Name="FK_usertobasket_products" Association="Self.FK_usertobasket_products">
-      <End Role="products" EntitySet="products" />
-      <End Role="usertobasket" EntitySet="usertobaskets" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

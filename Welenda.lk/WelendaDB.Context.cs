@@ -13,10 +13,10 @@ namespace Welenda.lk
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class welendadbEntities : DbContext
+    public partial class welendadbContext : DbContext
     {
-        public welendadbEntities()
-            : base("name=welendadbEntities")
+        public welendadbContext()
+            : base("name=welendadbContext")
         {
         }
     
@@ -29,5 +29,6 @@ namespace Welenda.lk
         public virtual DbSet<productinfo> productinfoes { get; set; }
         public virtual DbSet<product> products { get; set; }
         public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<usertobasket> usertobaskets { get; set; }
     }
 }

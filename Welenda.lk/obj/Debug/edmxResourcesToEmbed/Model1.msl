@@ -18,7 +18,6 @@
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="title" ColumnName="title" />
           <ScalarProperty Name="sectioncontent" ColumnName="sectioncontent" />
-          <ScalarProperty Name="imageurl" ColumnName="imageurl" />
           <ScalarProperty Name="productid" ColumnName="productid" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -47,15 +46,6 @@
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="uid" ColumnName="uid" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="usertobaskets">
-      <EntityTypeMapping TypeName="welendadbModel.usertobasket">
-        <MappingFragment StoreEntitySet="usertobasket">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="userId" ColumnName="userId" />
-          <ScalarProperty Name="productId" ColumnName="productId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

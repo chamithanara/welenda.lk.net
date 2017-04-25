@@ -12,13 +12,11 @@ namespace Welenda.lk
     using System;
     using System.Collections.Generic;
     
-    public partial class productinfo
+    public partial class usertobasket
     {
         public int id { get; set; }
-        public string title { get; set; }
-        public string sectioncontent { get; set; }
-        public string imageurl { get; set; }
-        public int productid { get; set; }
+        public int userId { get; set; }
+        public int productId { get; set; }
     
         public virtual product product { get; set; }
     }

@@ -14,6 +14,7 @@ namespace Welenda.lk.Controllers
             return View();
         }
 
+
         public JsonResult GetHotProducts()
         {
             var execute = new ExecuteQueries();

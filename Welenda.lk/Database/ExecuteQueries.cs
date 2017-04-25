@@ -10,6 +10,8 @@ using Welenda.lk.Models;
 using static Welenda.lk.Models.AuthErrorCodes;
 using static Welenda.lk.Models.ProductModel;
 using Welenda.lk.External;
+using System.Data.Entity.Infrastructure;
+using System.Data.Objects;
 
 namespace Welenda.lk.Database
 {
@@ -24,156 +26,52 @@ namespace Welenda.lk.Database
         [MethodImpl(MethodImplOptions.Synchronized)]
         public ErrorCodes CreateUser(string email, string password, string name)
         {
-            if (!this.CheckEmailExist(email))
+            using (var db = new welendadbContext())
             {
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = getConnection();
-                    command.CommandType = CommandType.Text;
-                    command.CommandText = "INSERT into [user] (email, password, name, uid) VALUES (@email, @password, @name, @uid)";
-                    command.Parameters.AddWithValue("@email", email);
-                    command.Parameters.AddWithValue("@password", password);
-                    command.Parameters.AddWithValue("@name", name);
-                    command.Parameters.AddWithValue("@uid", Guid.NewGuid());
-
-                    try
-                    {
-                        lock (this)
-                        {
-                            if (command.Connection.State == ConnectionState.Closed)
-                            {
-                                command.Connection.Open();
-                            }
-                        }
-
-                        int recordsAffected = command.ExecuteNonQuery();
-                    }
-                    catch (SqlException e)
-                    {
-                        var msg = e.Message;
-                        return ErrorCodes.exception;
-                    }
-                    finally
-                    {
-                        command.Connection.Close();
-                    }
-                }
-
-                return ErrorCodes.success;
-            }
-            else
-            {
-                return ErrorCodes.emailExist;
-            }
-        }
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        private bool CheckEmailExist(string email)
-        {
-            using (SqlCommand command = new SqlCommand())
-            {
-                command.Connection = getConnection();
-                command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT COUNT(*) FROM [user] WHERE email = @email";
-                command.Parameters.AddWithValue("@email", email);
-
                 try
                 {
-                    if (command.Connection.State == ConnectionState.Closed)
+                    if (!db.users.Where(u => u.email == email).Any())
                     {
-                        command.Connection.Open();
+                        var users = db.Set<user>();
+                        users.Add(new user { email = email, password = password, name = name, uid = Guid.NewGuid().ToString() });
+
+                        db.SaveChanges();
+                        return ErrorCodes.success;
                     }
-
-                    lock (this)
+                    else
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            List<string> str = new List<string>();
-
-                            while (reader.Read())
-                            {
-                                str.Add(reader.GetValue(0).ToString());
-                            }
-
-                            if (str[0].Equals("1"))
-                            {
-                                return true;
-                            }
-                            else
-                            {
-                                return false;
-                            }
-
-                            if (!reader.IsClosed)
-                            {
-                                reader.Close();
-                            }
-                        }
+                        return ErrorCodes.emailExist;
                     }
                 }
-                catch (SqlException e)
+                catch (Exception e)
                 {
                     var msg = e.Message;
-                    return false;
+                    return ErrorCodes.exception;
                 }
-                finally
-                {
-                    command.Connection.Close();
-                }
-            }            
+            }
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public ResultModel LoginUser(string email, string password)
         {
-            using (SqlCommand command = new SqlCommand())
+            using (var db = new welendadbContext())
             {
-                command.Connection = getConnection();
-                command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT * FROM [user] WHERE email = @email AND password = @password";
-                command.Parameters.AddWithValue("@email", email);
-                command.Parameters.AddWithValue("@password", password);
-
                 try
                 {
-                    if (command.Connection.State == ConnectionState.Closed)
+                    if (!db.users.Where(u => u.email == email & u.password == password).Any())
                     {
-                        command.Connection.Open();
+                        return new ResultModel { errorCode = ErrorCodes.nouserinfo, result = null };
                     }
-
-                    lock (this)
+                    else
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            List<string> str = new List<string>();
-
-                            while (reader.Read())
-                            {
-                                for (int i = 0; i < reader.FieldCount; i++)
-                                {
-                                    str.Add(reader.GetValue(i).ToString().Trim());
-                                }
-                            }
-
-                            if (str.Count == 0)
-                            {
-                                return new ResultModel { errorCode = ErrorCodes.nouserinfo, result = null };
-                            }
-                            else
-                            {
-                                return new ResultModel { errorCode = ErrorCodes.success, result = str };
-                            }
-                        }
+                        var user = db.users.Where(u => u.email == email && u.password == password).ToList();
+                        return new ResultModel { errorCode = ErrorCodes.success, userResult = user };
                     }
                 }
-                catch (SqlException e)
+                catch (Exception e)
                 {
                     var msg = e.Message;
                     return new ResultModel { errorCode = ErrorCodes.exception, result = null };
-                }
-                finally
-                {
-                    command.Connection.Close();
                 }
             }
         }
@@ -181,70 +79,40 @@ namespace Welenda.lk.Database
         [MethodImpl(MethodImplOptions.Synchronized)]
         public ResultModel GetHotProducts()
         {
-            using (SqlCommand command = new SqlCommand())
+            try
             {
-                command.Connection = getConnection();
-                command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT * FROM [products] where ishotproduct = 1";
-
-                try
+                lock (this)
                 {
-                    if (command.Connection.State == ConnectionState.Closed)
-                    {
-                        command.Connection.Open();
-                    }
+                    Dictionary<string, List<string>> str = new Dictionary<string, List<string>>();
 
-                    lock (this)
+                    using (var db = new welendadbContext())
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        var L2EQuery = db.products.Where(s => s.ishotproduct == true).ToList();
+
+                        foreach (var product in L2EQuery)
                         {
-                            Dictionary<string, List<string>> str = new Dictionary<string, List<string>>();
+                            var data = new List<string>();
+                            var id = product.id.ToString().Trim();
 
-                            while (reader.Read())
-                            {
-                                var data = new List<string>();
-                                var id = string.Empty;
+                            data.Add(product.title.Trim());
+                            data.Add(product.imgurl.Trim());
+                            data.Add(product.oldprice.Trim());
+                            data.Add(product.newprice.Trim());
 
-                                for (int i = 0; i < reader.FieldCount; i++)
-                                {
-                                    if (i % 9 == 0)
-                                    {
-                                        id = reader.GetValue(i).ToString().Trim();
-                                        data = new List<string>();
-                                    }
-                                    else if (i % 9 == 8)
-                                    {
-                                        data.Add(reader.GetValue(i).ToString().Trim());
-                                        str.Add(id, data);
-                                    }
-                                    else
-                                    {
-                                        data.Add(reader.GetValue(i).ToString().Trim());
-                                    }
-                                }
-                            }
-
-                            if (str.Count != 0)
-                            {
-                                return new ResultModel { errorCode = ErrorCodes.success, hotProducts = str };
-                            }
-
-                            if (!reader.IsClosed)
-                            {
-                                reader.Close();
-                            }
+                            str.Add(id, data);
                         }
                     }
+                        
+                    if (str.Count != 0)
+                    {
+                        return new ResultModel { errorCode = ErrorCodes.success, hotProducts = str };
+                    }
                 }
-                catch (SqlException e)
-                {
-                    var msg = e.Message;
-                    return new ResultModel { errorCode = ErrorCodes.exception };
-                }
-                finally
-                {
-                    command.Connection.Close();
-                }
+            }
+            catch (SqlException e)
+            {
+                var msg = e.Message;
+                return new ResultModel { errorCode = ErrorCodes.exception };
             }
 
             return new ResultModel { errorCode = ErrorCodes.success };
@@ -252,143 +120,83 @@ namespace Welenda.lk.Database
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public ResultModel GetElectronicsProducts()
-        {
-            using (SqlCommand command = new SqlCommand())
+        { 
+            try
             {
-                command.Connection = getConnection();
-                command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT * FROM [products] where mainCategory = 0";
-
-                try
+                lock (this)
                 {
-                    if (command.Connection.State == ConnectionState.Closed)
-                    {
-                        command.Connection.Open();
-                    }
+                    Dictionary<string, List<string>> str = new Dictionary<string, List<string>>();
 
-                    lock (this)
+                    using (var db = new welendadbContext())
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        var L2EQuery = db.products.Where(s => s.mainCategory == 0 && s.isinhomepage == true);
+
+                        foreach (var product in L2EQuery)
                         {
-                            Dictionary<string, List<string>> str = new Dictionary<string, List<string>>();
-                            
-                            while (reader.Read())
-                            {
-                                var data = new List<string>();
-                                var id = string.Empty;
+                            var data = new List<string>();
+                            var id = product.id.ToString().Trim();
 
-                                for (int i = 0; i < reader.FieldCount; i++)
-                                {
-                                    if (i % 9 == 0)
-                                    {
-                                        id = reader.GetValue(i).ToString().Trim();
-                                        data = new List<string>();
-                                    }
-                                    else if (i % 9 == 8)
-                                    {
-                                        data.Add(reader.GetValue(i).ToString().Trim());
-                                        str.Add(id, data);
-                                    }
-                                    else
-                                    {
-                                        data.Add(reader.GetValue(i).ToString().Trim());
-                                    }
-                                }
-                            }
+                            data.Add(product.title.Trim());
+                            data.Add(product.imgurl.Trim());
+                            data.Add(product.oldprice.Trim());
+                            data.Add(product.newprice.Trim());
 
-                            if (!reader.IsClosed)
-                            {
-                                reader.Close();
-                            }
-
-                            if (str.Count != 0)
-                            {
-                                return new ResultModel { errorCode = ErrorCodes.success, ElectornicsProducts = str };
-                            }
+                            str.Add(id, data);
                         }
                     }
-                }
-                catch (SqlException e)
-                {
-                    var msg = e.Message;
-                    return new ResultModel { errorCode = ErrorCodes.exception };
-                }
-                finally
-                {
-                    command.Connection.Close();
+                        
+                    if (str.Count != 0)
+                    {
+                        return new ResultModel { errorCode = ErrorCodes.success, ElectornicsProducts = str };
+                    }
                 }
             }
+            catch (SqlException e)
+            {
+                var msg = e.Message;
+                return new ResultModel { errorCode = ErrorCodes.exception };
+            }
 
-            return new ResultModel { errorCode = ErrorCodes.success };
+            return new ResultModel { errorCode = ErrorCodes.success };            
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public ResultModel GetToyProducts()
         {
-            using (SqlCommand command = new SqlCommand())
+            try
             {
-                command.Connection = getConnection();
-                command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT * FROM [products] where mainCategory = 1";
-
-                try
+                lock (this)
                 {
-                    if (command.Connection.State == ConnectionState.Closed)
-                    {
-                        command.Connection.Open();
-                    }
+                    Dictionary<string, List<string>> str = new Dictionary<string, List<string>>();
 
-                    lock (this)
+                    using (var db = new welendadbContext())
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        var L2EQuery = db.products.Where(s => s.mainCategory == 1 && s.isinhomepage == true);
+
+                        foreach (var product in L2EQuery)
                         {
-                            Dictionary<string, List<string>> str = new Dictionary<string, List<string>>();
+                            var data = new List<string>();
+                            var id = product.id.ToString().Trim();
 
-                            while (reader.Read())
-                            {
-                                var data = new List<string>();
-                                var id = string.Empty;
+                            data.Add(product.title.Trim());
+                            data.Add(product.imgurl.Trim());
+                            data.Add(product.oldprice.Trim());
+                            data.Add(product.newprice.Trim());
 
-                                for (int i = 0; i < reader.FieldCount; i++)
-                                {
-                                    if (i % 9 == 0)
-                                    {
-                                        id = reader.GetValue(i).ToString().Trim();
-                                        data = new List<string>();
-                                    }
-                                    else if (i % 9 == 8)
-                                    {
-                                        data.Add(reader.GetValue(i).ToString().Trim());
-                                        str.Add(id, data);
-                                    }
-                                    else
-                                    {
-                                        data.Add(reader.GetValue(i).ToString().Trim());
-                                    }
-                                }
-                            }
-
-                            if (!reader.IsClosed)
-                            {
-                                reader.Close();
-                            }
-
-                            if (str.Count != 0)
-                            {
-                                return new ResultModel { errorCode = ErrorCodes.success, ToyProducts = str };
-                            }
+                            str.Add(id, data);
                         }
                     }
+
+                    if (str.Count != 0)
+                    {
+                        return new ResultModel { errorCode = ErrorCodes.success, ToyProducts = str };
+                    }
                 }
-                catch (SqlException e)
-                {
-                    var msg = e.Message;
-                    return new ResultModel { errorCode = ErrorCodes.exception };
-                }
-                finally
-                {
-                    command.Connection.Close();
-                }
+            }
+            catch (SqlException e)
+            {
+                var msg = e.Message;
+                return new ResultModel { errorCode = ErrorCodes.exception };
             }
 
             return new ResultModel { errorCode = ErrorCodes.success };
@@ -397,299 +205,201 @@ namespace Welenda.lk.Database
         [MethodImpl(MethodImplOptions.Synchronized)]
         public ResultModel GetProductDetails(string productId)
         {
-            using (SqlCommand command = new SqlCommand())
+            using (var db = new welendadbContext())
             {
-                command.Connection = getConnection();
-                command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT * FROM [productdetail] where productid = @productId";
-                command.Parameters.AddWithValue("@productId", Convert.ToInt32(productId));
-
                 try
                 {
-                    if (command.Connection.State == ConnectionState.Closed)
-                    {
-                        command.Connection.Open();
-                    }
+                    var productIdVal = Convert.ToInt32(productId);
+                    var productDetail = db.productdetails.Where(p => p.productid == productIdVal).FirstOrDefault();
+                    var prodInfo = db.productinfoes.Where(p => p.productid == productIdVal).ToList();
 
-                    lock (this)
-                    {
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            List<string> str = new List<string>();
-
-                            while (reader.Read())
-                            {
-                                var id = string.Empty;
-
-                                for (int i = 0; i < reader.FieldCount; i++)
-                                {
-                                    if (i % 5 == 0)
-                                    {
-                                        id = reader.GetValue(i).ToString().Trim();
-                                    }
-                                    else if (i % 5 == 4)
-                                    {
-                                        str.Add(reader.GetValue(i).ToString().Trim());
-                                    }
-                                    else
-                                    {
-                                        str.Add(reader.GetValue(i).ToString().Trim());
-                                    }
-                                }
-                            }
-
-                            if (!reader.IsClosed)
-                            {
-                                reader.Close();
-                            }
-
-                            var prodInfo = GetProductMoreDetails(productId);
-
-                            if (str.Count != 0)
-                            {
-                                return new ResultModel { errorCode = ErrorCodes.success, result = str, productsInfo = prodInfo };
-                            }
-                        }
-                    }
+                    return new ResultModel { errorCode = ErrorCodes.success, productDetailResult = productDetail, productInfoResult = prodInfo };
                 }
-                catch (SqlException e)
+                catch (Exception e)
                 {
                     var msg = e.Message;
-                    return new ResultModel { errorCode = ErrorCodes.exception };
-                }
-                finally
-                {
-                    command.Connection.Close();
+                    return new ResultModel { errorCode = ErrorCodes.exception, result = null };
                 }
             }
-
-            return new ResultModel { errorCode = ErrorCodes.success };
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public Dictionary<string, string> GetProductMoreDetails(string productId)
+        public ResultModel GetProductSubDetails(string productId)
         {
-            using (SqlCommand command = new SqlCommand())
+            using (var db = new welendadbContext())
             {
-                command.Connection = getConnection();
-                command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT * FROM [productinfo] where productid = @productId";
-                command.Parameters.AddWithValue("@productId", Convert.ToInt32(productId));
-
                 try
                 {
-                    if (command.Connection.State == ConnectionState.Closed)
-                    {
-                        command.Connection.Open();
-                    }
-
-                    lock (this)
-                    {
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            Dictionary<string, string> str = new Dictionary<string, string>();
-
-                            while (reader.Read())
-                            {
-                                var title = String.Empty;
-                                var info = String.Empty;
-
-                                for (int i = 0; i < reader.FieldCount; i++)
-                                {
-                                    if (i % 4 == 0)
-                                    {
-                                        title = String.Empty;
-                                        info = String.Empty;
-                                    }
-                                    else if (i % 4 == 2)
-                                    {
-                                        title = reader.GetValue(i).ToString().Trim();
-                                    }
-                                    else if (i % 4 == 3)
-                                    {
-                                        info = reader.GetValue(i).ToString().Trim();
-                                    }
-
-                                }
-                            }
-
-                            if (str.Count != 0)
-                            {
-                                return str;
-                            }
-
-                            if (!reader.IsClosed)
-                            {
-                                reader.Close();
-                            }
-                        }
-                    }
+                    var productIdVal = Convert.ToInt32(productId);
+                    var product = db.products.Where(p => p.id == productIdVal).FirstOrDefault();
+                    return new ResultModel { errorCode = ErrorCodes.success, productResult = product };
                 }
-                catch (SqlException e)
+                catch (Exception e)
                 {
                     var msg = e.Message;
-                    return new Dictionary<string, string>();
-                }
-                finally
-                {
-                    command.Connection.Close();
+                    return new ResultModel { errorCode = ErrorCodes.exception, result = null };
                 }
             }
-
-            return new Dictionary<string, string>();
-        }
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        public ResultModel GetProductInfo(string productId)
-        {
-            using (SqlCommand command = new SqlCommand())
-            {
-                command.Connection = getConnection();
-                command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT * FROM [products] where id = @productId";
-                command.Parameters.AddWithValue("@productId", Convert.ToInt32(productId));
-
-                try
-                {
-                    if (command.Connection.State == ConnectionState.Closed)
-                    {
-                        command.Connection.Open();
-                    }
-
-                    lock (this)
-                    {
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            List<string> str = new List<string>();
-
-                            while (reader.Read())
-                            {
-                                for (int i = 0; i < reader.FieldCount; i++)
-                                {
-                                    if (i % 8 != 0)
-                                    {
-                                        str.Add(reader.GetValue(i).ToString().Trim());
-                                    }
-                                }
-                            }
-
-                            if (!reader.IsClosed)
-                            {
-                                reader.Close();
-                            }
-
-                            if (str.Count != 0)
-                            {
-                                return new ResultModel { errorCode = ErrorCodes.success, result = str };
-                            }
-                        }
-                    }
-                }
-                catch (SqlException e)
-                {
-                    var msg = e.Message;
-                    return new ResultModel { errorCode = ErrorCodes.exception };
-                }
-                finally
-                {
-                    command.Connection.Close();
-                }
-            }
-
-            return new ResultModel { errorCode = ErrorCodes.success };
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public ResultModel GetProductsForCategory(string category)
         {
-            var catergoryDetails = new CategoryDetails().GetDategoryDetails(category);
-
-            using (SqlCommand command = new SqlCommand())
+            try
             {
-                command.Connection = getConnection();
-                command.CommandType = CommandType.Text;
+                var catergoryDetails = new CategoryDetails().GetDategoryDetails(category);
+                var L2EQuery = new List<product>();
 
-                if (catergoryDetails.fieldName.Equals("mainCategory"))
+                using (var db = new welendadbContext())
                 {
-                    command.CommandText = "SELECT * FROM [products] where mainCategory = @categoryId";
-                }
-                else if (catergoryDetails.fieldName.Equals("mainSubCategory"))
-                {
-                    command.CommandText = "SELECT * FROM [products] where mainSubCategory = @categoryId";
-                }
-                else if (catergoryDetails.fieldName.Equals("subCategory"))
-                {
-                    command.CommandText = "SELECT * FROM [products] where subCategory = @categoryId";
-                }
-                
-                command.Parameters.AddWithValue("@categoryId", catergoryDetails.categoryId);
-
-                try
-                {
-                    if (command.Connection.State == ConnectionState.Closed)
+                    if (catergoryDetails.fieldName.Equals("mainCategory"))
                     {
-                        command.Connection.Open();
+                        L2EQuery = db.products.Where(s => s.mainCategory == catergoryDetails.categoryId).ToList();
+                    }
+                    else if (catergoryDetails.fieldName.Equals("mainSubCategory"))
+                    {
+                        L2EQuery = db.products.Where(s => s.mainSubCategory == catergoryDetails.categoryId).ToList();
+                    }
+                    else if (catergoryDetails.fieldName.Equals("subCategory"))
+                    {
+                        L2EQuery = db.products.Where(s => s.subCategory == catergoryDetails.categoryId).ToList();
                     }
 
                     lock (this)
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        Dictionary<string, List<string>> str = new Dictionary<string, List<string>>();
+
+                        foreach (var product in L2EQuery)
                         {
-                            Dictionary<string, List<string>> str = new Dictionary<string, List<string>>();
+                            var data = new List<string>();
+                            var id = product.id.ToString().Trim();
 
-                            while (reader.Read())
-                            {
-                                var data = new List<string>();
-                                var id = string.Empty;
+                            data.Add(product.title.Trim());
+                            data.Add(product.imgurl.Trim());
+                            data.Add(product.oldprice.Trim());
+                            data.Add(product.newprice.Trim());
 
-                                for (int i = 0; i < reader.FieldCount; i++)
-                                {
-                                    if (i % 9 == 0)
-                                    {
-                                        id = reader.GetValue(i).ToString().Trim();
-                                        data = new List<string>();
-                                    }
-                                    else if (i % 9 == 8)
-                                    {
-                                        data.Add(reader.GetValue(i).ToString().Trim());
-                                        str.Add(id, data);
-                                    }
-                                    else
-                                    {
-                                        data.Add(reader.GetValue(i).ToString().Trim());
-                                    }
-                                }
-                            }
+                            str.Add(id, data);
+                        }
 
-                            if (!reader.IsClosed)
-                            {
-                                reader.Close();
-                            }
-
-                            if (str.Count != 0)
-                            {
-                                return new ResultModel { errorCode = ErrorCodes.success, ElectornicsProducts = str, categoryTitle = catergoryDetails.categoryTitle };
-                            }
-                            else
-                            {
-                                return new ResultModel { errorCode = ErrorCodes.success, categoryTitle = catergoryDetails.categoryTitle };
-                            }
+                        if (str.Count != 0)
+                        {
+                            return new ResultModel { errorCode = ErrorCodes.success, ElectornicsProducts = str, categoryTitle = catergoryDetails.categoryTitle };
+                        }
+                        else
+                        {
+                            return new ResultModel { errorCode = ErrorCodes.success, categoryTitle = catergoryDetails.categoryTitle };
                         }
                     }
                 }
-                catch (SqlException e)
+            }
+            catch (SqlException e)
+            {
+                var msg = e.Message;
+                return new ResultModel { errorCode = ErrorCodes.exception };
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public ResultModel ProductAddToCart(int prodId, string userId, string name)
+        {
+            using (var db = new welendadbContext())
+            {
+                try
+                {
+                    var user = db.users.Where(u => u.uid.Trim().Equals(userId.Trim()) &&
+                                              u.name.Trim().Equals(name.Trim())).FirstOrDefault();
+
+                    if (user != null && db.products.Any(p => p.id == prodId))
+                    {
+                        // check if the item already added by the user
+                        if (!db.usertobaskets.Any(ub => ub.productId == prodId &&
+                                                       ub.userId == user.id))
+                        {
+                            var userToBasket = db.Set<usertobasket>();
+                            userToBasket.Add(new usertobasket { userId = user.id, productId = prodId });
+
+                            db.SaveChanges();
+                            return new ResultModel { errorCode = ErrorCodes.success };
+                        }
+                        else
+                        {
+                            return new ResultModel { errorCode = ErrorCodes.itemexists };
+                        }
+                    }
+                    else
+                    {
+                        return new ResultModel { errorCode = ErrorCodes.error };
+                    }
+                }
+                catch (Exception e)
                 {
                     var msg = e.Message;
-                    return new ResultModel { errorCode = ErrorCodes.exception };
-                }
-                finally
-                {
-                    command.Connection.Close();
+                    return new ResultModel { errorCode = ErrorCodes.exception, result = null };
                 }
             }
+        }
 
-            return new ResultModel { errorCode = ErrorCodes.success };
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public ResultModel GetCartItemCount(string userId, string name)
+        {
+            using (var db = new welendadbContext())
+            {
+                try
+                {
+                    var user = db.users.Where(u => u.uid.Trim().Equals(userId.Trim()) &&
+                                              u.name.Trim().Equals(name.Trim())).FirstOrDefault();
+
+                    if (user != null)
+                    {
+                        var count = db.usertobaskets.Count(ub => ub.userId == user.id);
+                        return new ResultModel { basketItemCount = count, errorCode = ErrorCodes.success };
+                    }
+                    else
+                    {
+                        return new ResultModel { errorCode = ErrorCodes.error };
+                    }
+                }
+                catch (Exception e)
+                {
+                    var msg = e.Message;
+                    return new ResultModel { errorCode = ErrorCodes.exception, result = null };
+                }
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public ResultModel GetItemsFromCart(string userId)
+        {
+            using (var db = new welendadbContext())
+            {
+                try
+                {
+                    var user = db.users.Where(u => u.uid.Trim().Equals(userId.Trim())).FirstOrDefault();
+
+                    if (user != null)
+                    {
+                        var items = db.usertobaskets.Where(ub => ub.userId == user.id);
+                        var productsList = new List<product>();
+
+                        foreach (var item in items)
+                        {
+                            productsList.Add(item.product);
+                        }
+
+                        return new ResultModel { cartProductList = productsList, errorCode = ErrorCodes.success };
+                    }
+                    else
+                    {
+                        return new ResultModel { errorCode = ErrorCodes.error };
+                    }
+                }
+                catch (Exception e)
+                {
+                    var msg = e.Message;
+                    return new ResultModel { errorCode = ErrorCodes.exception, result = null };
+                }
+            }
         }        
-    }
-    
+    }    
 }

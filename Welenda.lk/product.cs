@@ -19,6 +19,7 @@ namespace Welenda.lk
         {
             this.productdetails = new HashSet<productdetail>();
             this.productinfoes = new HashSet<productinfo>();
+            this.usertobaskets = new HashSet<usertobasket>();
         }
     
         public int id { get; set; }
@@ -36,5 +37,7 @@ namespace Welenda.lk
         public virtual ICollection<productdetail> productdetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<productinfo> productinfoes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<usertobasket> usertobaskets { get; set; }
     }
 }

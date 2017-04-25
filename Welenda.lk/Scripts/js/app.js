@@ -1,22 +1,70 @@
 var app = angular.module('welendaApp', ['auth.services']);
 var productdId = null;
 
+function notification() {
+    $('.notification').slideUp('fast');
+}
+
 app.controller('HomeCtrl', function($scope, Auth) {
     $scope.RegTxt = "Register";
     $scope.LoginText = "Login";
     
-    if (Auth.isLoggedIn()){
-      $scope.username = Auth.getUser().name;
-      $scope.isLoggedIn = true;   
-    }else{
-      $scope.isLoggedIn = false;
+    if (Auth.isLoggedIn()) {
+        var user = Auth.getUser();
+        $scope.username = user.name;
+        $scope.isLoggedIn = true;
+    } else {
+        $scope.usable = !$scope.usable;
+        $scope.isLoggedIn = false;
     }
     
-    $scope.logoutUser = function() {
+    $scope.logoutUser = function () {
         if (confirm("Do you want to logout?")) {
             Auth.logout();
             location.reload();
         }
+    }
+});
+
+app.controller('cartBtnCtrl', function ($scope, Auth) {
+    $scope.usable = true;
+
+    if (Auth.isLoggedIn()) {
+        var user = Auth.getUser();
+        $scope.username = user.name;
+        $scope.isLoggedIn = true;
+        $scope.usable = true;
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/Basket/GetCartItemCount",
+            data: { userId: user.welendaUserId, name: user.name }
+        })
+        .success(function (data) {
+            if (data != null) {
+                $scope.$apply(function () {
+                    if (data.basketItemCount == 0) {
+                        $scope.cartItemCount = "Cart is Empty";
+                    }
+                    else {
+                        $scope.cartItemCount = data.basketItemCount + " item(s)";
+                    }
+                });
+            }
+        })
+        .fail(function (xhr) {
+            alert(xhr.responseText);
+        });
+    } else {
+        $scope.usable = !$scope.usable;
+        $scope.cartItemCount = "Cart is Empty";
+        $scope.isLoggedIn = false;
+    }
+
+    $scope.GoToShoppingCart = function () {
+        var user = Auth.getUser().welendaUserId;
+        window.location = "/Basket/Index?id=" + user;
     }
 });
 
@@ -70,19 +118,87 @@ app.controller('homeProdCtrl', function ($scope) {
     });
 
     $scope.getProductDetails = function (productdId, details) {
-
-        if (window.localStorage['prodcuctDetails']) {
-            window.localStorage.removeItem("prodcuctDetails");
-        }
-        var _prodcuctDetails = { "prodcuctId": productdId, "details": details };
-        window.localStorage['prodcuctDetails'] = JSON.stringify(_prodcuctDetails);
-
         window.location = "/Product/Index?productdId=" + productdId;
     }
 });
 
 app.controller('ProdDetailsCtrl', function ($scope, Auth) {
+    $scope.addToBasket = function (title, prodId) {
+        if (!Auth.isLoggedIn()) {
+            ShowLoginAlert();
+        }
+        else {
+            alertify.confirm('Add to Cart', 'Do you want to add ' + title + ' to the cart?',
+                function () {
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: "/Basket/AddItemToBasket",
+                        data: { productId: prodId, userId: Auth.getUser().welendaUserId, name: Auth.getUser().name }
+                    })
+                    .success(function (data) {
+                        if (data.errorCode == 3) {
+                            $scope.$apply(function () {
+                                $scope.notificationtext = "Successfully Added " + title + " to the Cart";
+                            });
+                            $('.notification').slideDown('fast');
+                            window.setTimeout(notification, 3000);
+                        }
+                        else if (data.errorCode == 5) {
+                            alertify.alert('Item Already Exists', 'You have already added this item to the cart. Go to Shopping cart to change the product quantity...', function () { });
+                        }
+                        else {
+                            alert('An error occured. Please try again later.');
+                        }
+                    })
+                    .fail(function (xhr) {
+                        alert(xhr.responseText);
+                    });                    
+                },
+                function () {
+                }
+            );
+        }
+       
+    }
+});
 
+function ShowLoginAlert(){
+    if (!alertify.errorAlert) {
+        //define a new errorAlert base on alert
+        alertify.dialog('errorAlert', function factory() {
+            return {
+                build: function () {
+                    var errorHeader = '<span class="fa fa-times-circle fa-2x" '
+                    + 'style="vertical-align:middle;color:#e10000;">'
+                    + '</span> <span style="font-size: 15px;">Please Login/Register</span>';
+                    this.setHeader(errorHeader);
+                }
+            };
+        }, true, 'alert');
+    }
+
+    alertify
+        .errorAlert("Please Login or Register to purchase an Item..! If you are already a user please login. If not get register with us.<br/>" +
+            "<div style=\"margin-top: 24px;\">" +
+                "<a href=\"/Auth/Login/\" class=\"btn btn-primary\"><i class=\"fa fa-sign-in\"></i>Login</a>" +
+                "<a href=\"/Auth/Register/\" style=\"float:right\" class=\"btn btn-default\"><i class=\"fa fa-users\"></i>Register</a>" +
+            "</div>")
+}
+
+app.controller('shoppingCartCtrl', function ($scope, Auth) {
+    $scope.gobackHistory = function () {
+        window.history.back();
+    }
+
+    $scope.quantityChange = function (product) {
+        var quantity = $scope.quantity;
+        $scope.itemTotal = $scope.price * quantity
+
+        if ($scope.quantity == null) {
+            $scope.itemTotal = $scope.price;
+        }
+    }
 });
 
 app.controller('AuthCtrl', function($scope, Auth) {
@@ -99,11 +215,11 @@ app.controller('AuthCtrl', function($scope, Auth) {
         }
         else if (!checkEmail(user.email)) {
             alert('Invalid Email Format.');
-        }else{
+        } else{
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                url: "CreateNewUser",
+                url: "/Auth/CreateNewUser",
                 data: { email: user.email , password: user.password, name: user.name }
             })
             .success(function (data) {
@@ -141,7 +257,7 @@ app.controller('AuthCtrl', function($scope, Auth) {
            $.ajax({
                type: "POST",
                dataType: "json",
-               url: "LoginUser",
+               url: "/Auth/LoginUser",
                data: { email: user.loginEmail, password: user.loginPassword }
            })
             .success(function (data) {
@@ -153,7 +269,7 @@ app.controller('AuthCtrl', function($scope, Auth) {
                         alert('No user corresponding to the given email and password.');
                     }
                     else if (data.errorCode == 3) {
-                        Auth.setUser(data.result[4], data.result[3]);
+                        Auth.setUser(data.userResult[0].uid.trim(), data.userResult[0].name.trim());
                         window.location.href = '/';
                     }
                 }                

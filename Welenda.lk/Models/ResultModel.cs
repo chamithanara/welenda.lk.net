@@ -13,8 +13,20 @@ namespace Welenda.lk.Models
 
         public string categoryTitle { get; set; }
 
+        public int basketItemCount { get; set; }
+
         public List<string> result { get; set; }
-        
+
+        public List<product> cartProductList { get; set; }
+
+        public List<user> userResult { get; set; }
+
+        public product productResult { get; set; }
+
+        public productdetail productDetailResult { get; set; }
+
+        public List<productinfo> productInfoResult { get; set; }
+
         public Dictionary<string, List<string>> hotProducts { get; set; }
 
         public Dictionary<string, string> productsInfo { get; set; }

@@ -147,9 +147,27 @@ h1 {
 .navbar #basket-overview {
   padding: 0;
 }
+
+.notification {
+  height: auto;
+  padding: 6px;
+  border-bottom: #0a0;
+  background: rgba(75,200,75,0.90);
+  box-shadow: 0px 0px 2px rgba(0,0,0,0.35);
+  text-align: center;
+  position: fixed;
+  top: 0px;
+  z-index:100000;
+  width: 100%;
+  font-size: 13px;
+  color: #fff;
+  text-shadow: 1px 1px 0px #999;
+  display: none;
+}
+
 #hot h2 {
   text-transform: uppercase;
-  font-size: 21px;
+  font-size: 19px;
   color: #000000;
   font-family: Roboto, "Helvetica", Arial, sans-serif;
   margin-left: 26px;
@@ -264,9 +282,14 @@ h1 {
 }
 .box .box-header {
   background: #f7f7f7;
-  margin: -20px -20px 20px;
+  /*margin: -20px -20px 20px;*/
+  margin: -10px -10px 18px -14px;
   padding: 20px;
   border-bottom: solid 1px #eeeeee;
+}
+a.adisabled {
+  cursor: not-allowed;
+  opacity: .65;
 }
 .box .box-header:before,
 .box .box-header:after {
@@ -278,7 +301,7 @@ h1 {
 }
 .box .box-footer {
   background: #f7f7f7;
-  margin: 30px -20px -20px;
+  margin: 31px -13px -19px -15px;
   padding: 20px;
   border-top: solid 1px #eeeeee;
 }
@@ -642,14 +665,14 @@ h1 {
   text-decoration: underline;
 }
 #content #productMain .price {
-  font-size: 25px;
+  font-size: 21px;
   font-weight: 600;
   text-align: center;
   margin-bottom: 20px;
   color:red;
 }
 #content #productMain .strike {
-  font-size: 25px;
+  font-size: 21px;
   font-weight: 300;
   text-align: center;
   margin-bottom: 20px;
@@ -1369,7 +1392,7 @@ h1 {
 /* scaffolding */
 body {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.42857143;
   color: #333333;
 }
@@ -1420,8 +1443,8 @@ hr {
 .btn {
     font-weight: normal;
     font-family: "Roboto", Helvetica, Arial, sans-serif;
-    padding: 14px 28px;
-    font-size: 16px;
+    padding: 8px 28px;
+    font-size: 14px;
     line-height: 1.428571;
     border-radius: 5px;
 }
@@ -1609,7 +1632,7 @@ h6,
 .h5,
 .h6 {
   font-family: inherit;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.1;
   color: inherit;
 }

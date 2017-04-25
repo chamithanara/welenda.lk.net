@@ -13,7 +13,9 @@ namespace Welenda.lk.Models
             exception,
             emailExist,
             nouserinfo,
-            success
+            success,
+            error,
+            itemexists
         };
     }
 }
