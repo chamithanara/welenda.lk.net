@@ -130,30 +130,35 @@ app.controller('ProdDetailsCtrl', function ($scope, Auth) {
         else {
             alertify.confirm('Add to Cart', 'Do you want to add ' + title + ' to the cart?',
                 function () {
-                    $.ajax({
-                        type: "POST",
-                        dataType: "json",
-                        url: "/Basket/AddItemToBasket",
-                        data: { productId: prodId, userId: Auth.getUser().welendaUserId, name: Auth.getUser().name }
-                    })
-                    .success(function (data) {
-                        if (data.errorCode == 3) {
-                            $scope.$apply(function () {
-                                $scope.notificationtext = "Successfully Added " + title + " to the Cart";
-                            });
-                            $('.notification').slideDown('fast');
-                            window.setTimeout(notification, 3000);
-                        }
-                        else if (data.errorCode == 5) {
-                            alertify.alert('Item Already Exists', 'You have already added this item to the cart. Go to Shopping cart to change the product quantity...', function () { });
-                        }
-                        else {
-                            alert('An error occured. Please try again later.');
-                        }
-                    })
-                    .fail(function (xhr) {
-                        alert(xhr.responseText);
-                    });                    
+                    if ($scope.itemQuantity != undefined) {
+                        $.ajax({
+                            type: "POST",
+                            dataType: "json",
+                            url: "/Basket/AddItemToBasket",
+                            data: { productId: prodId, quantity: $scope.itemQuantity, userId: Auth.getUser().welendaUserId, name: Auth.getUser().name }
+                        })
+                        .success(function (data) {
+                            if (data.errorCode == 3) {
+                                $scope.$apply(function () {
+                                    $scope.notificationtext = "Successfully Added " + title + " to the Cart";
+                                });
+                                $('.notification').slideDown('fast');
+                                window.setTimeout(notification, 3000);
+                            }
+                            else if (data.errorCode == 5) {
+                                alertify.alert('Item Already Exists', 'You have already added this item to the cart. Go to Shopping cart to change the product quantity...', function () { });
+                            }
+                            else {
+                                alert('An error occured. Please try again later.');
+                            }
+                        })
+                        .fail(function (xhr) {
+                            alert(xhr.responseText);
+                        });
+                    }
+                    else {
+                        alertify.alert('Please select an item quantity..', function () { });
+                    }
                 },
                 function () {
                 }
@@ -189,15 +194,6 @@ function ShowLoginAlert(){
 app.controller('shoppingCartCtrl', function ($scope, Auth) {
     $scope.gobackHistory = function () {
         window.history.back();
-    }
-
-    $scope.quantityChange = function (product) {
-        var quantity = $scope.quantity;
-        $scope.itemTotal = $scope.price * quantity
-
-        if ($scope.quantity == null) {
-            $scope.itemTotal = $scope.price;
-        }
     }
 });
 

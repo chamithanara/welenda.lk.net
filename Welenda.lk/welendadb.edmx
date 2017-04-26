@@ -57,6 +57,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="userId" Type="int" Nullable="false" />
           <Property Name="productId" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" />
         </EntityType>
         <Association Name="FK_productdetail_products">
           <End Role="products" Type="Self.products" Multiplicity="1" />
@@ -175,6 +176,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="userId" Type="Int32" Nullable="false" />
           <Property Name="productId" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" />
           <NavigationProperty Name="product" Relationship="Self.FK_usertobasket_products" FromRole="usertobasket" ToRole="products" />
         </EntityType>
         <Association Name="FK_productdetail_products">
@@ -293,6 +295,7 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
                 <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

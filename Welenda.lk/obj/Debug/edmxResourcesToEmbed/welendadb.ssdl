@@ -52,6 +52,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="userId" Type="int" Nullable="false" />
     <Property Name="productId" Type="int" Nullable="false" />
+    <Property Name="quantity" Type="int" />
   </EntityType>
   <Association Name="FK_productdetail_products">
     <End Role="products" Type="Self.products" Multiplicity="1" />

@@ -37,7 +37,13 @@
                             <h2 style="font-size: 23px;" class="text-center">@ViewBag.prodSubDetails.title</h2>
                             <p class="strike">Rs. @ViewBag.prodSubDetails.oldprice</p>
                             <p class="price">Rs. @ViewBag.prodSubDetails.newprice</p>
-
+                            <p class="text-center buttons">Quantity</p>
+                            <select ng-model="itemQuantity">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>    
+                                <option value="4">4</option>
+                            </select>
                             <p class="text-center buttons">
                                 @{ 
                                 <a ng-click="addToBasket('@(ViewBag.prodSubDetails.title)', '@(ViewBag.prodSubDetails.id)')" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to cart</a>

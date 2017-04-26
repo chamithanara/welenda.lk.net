@@ -57,6 +57,7 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="userId" Type="Int32" Nullable="false" />
     <Property Name="productId" Type="Int32" Nullable="false" />
+    <Property Name="quantity" Type="Int32" />
     <NavigationProperty Name="product" Relationship="Self.FK_usertobasket_products" FromRole="usertobasket" ToRole="products" />
   </EntityType>
   <Association Name="FK_productdetail_products">

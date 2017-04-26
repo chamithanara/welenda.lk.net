@@ -17,7 +17,7 @@ namespace Welenda.lk.Models
 
         public List<string> result { get; set; }
 
-        public List<product> cartProductList { get; set; }
+        public List<ProductToQuantity> cartProductList { get; set; }
 
         public List<user> userResult { get; set; }
 

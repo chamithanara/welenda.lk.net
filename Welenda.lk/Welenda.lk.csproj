@@ -216,38 +216,39 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProductModel.cs" />
+    <Compile Include="Models\ProductToQuantity.cs" />
     <Compile Include="Models\ResultModel.cs" />
     <Compile Include="product.cs">
-      <DependentUpon>WelendaDB.tt</DependentUpon>
+      <DependentUpon>welendaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="productdetail.cs">
-      <DependentUpon>WelendaDB.tt</DependentUpon>
+      <DependentUpon>welendaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="productinfo.cs">
-      <DependentUpon>WelendaDB.tt</DependentUpon>
+      <DependentUpon>welendaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="user.cs">
-      <DependentUpon>WelendaDB.tt</DependentUpon>
+      <DependentUpon>welendaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="usertobasket.cs">
-      <DependentUpon>WelendaDB.tt</DependentUpon>
+      <DependentUpon>welendaDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="WelendaDB.Context.cs">
+    <Compile Include="welendaDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>WelendaDB.Context.tt</DependentUpon>
+      <DependentUpon>welendaDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="WelendaDB.cs">
+    <Compile Include="welendaDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>WelendaDB.tt</DependentUpon>
+      <DependentUpon>welendaDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="WelendaDB.Designer.cs">
+    <Compile Include="welendaDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>WelendaDB.edmx</DependentUpon>
+      <DependentUpon>welendaDB.edmx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -384,15 +385,15 @@
     <Content Include="Scripts\js\angular-websocket\CHANGELOG.md" />
     <Content Include="Scripts\js\angular-websocket\LICENSE" />
     <Content Include="Scripts\js\angular-websocket\README.md" />
-    <Content Include="WelendaDB.Context.tt">
+    <Content Include="welendaDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>WelendaDB.edmx</DependentUpon>
-      <LastGenOutput>WelendaDB.Context.cs</LastGenOutput>
+      <DependentUpon>welendaDB.edmx</DependentUpon>
+      <LastGenOutput>welendaDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="WelendaDB.tt">
+    <Content Include="welendaDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>WelendaDB.edmx</DependentUpon>
-      <LastGenOutput>WelendaDB.cs</LastGenOutput>
+      <DependentUpon>welendaDB.edmx</DependentUpon>
+      <LastGenOutput>welendaDB.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -438,12 +439,12 @@
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Basket\Index.cshtml" />
-    <EntityDeploy Include="WelendaDB.edmx">
+    <EntityDeploy Include="welendaDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>WelendaDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>welendaDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="WelendaDB.edmx.diagram">
-      <DependentUpon>WelendaDB.edmx</DependentUpon>
+    <Content Include="welendaDB.edmx.diagram">
+      <DependentUpon>welendaDB.edmx</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>

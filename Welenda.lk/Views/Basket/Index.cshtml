@@ -37,33 +37,35 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                  @{var iterator = 0;}
-                                  @foreach (var product in ViewBag.productsList)
+                                  @{var total = 0;}
+                                  @foreach (var productInfo in ViewBag.productsList)
                                   {
+                                    var itemTotal = Convert.ToInt32(productInfo.product.newprice) * productInfo.quantity;
+                                    total += itemTotal;
+
                                     <tr>
                                         <td>                                            
-                                            <img src="~/Content/img/@product.imgurl" alt="White Blouse Armani">
+                                            <img src="~/Content/img/@productInfo.product.imgurl" alt="White Blouse Armani">
                                         </td>
                                         <td>
-                                            <a href="@Url.Action("Index", "Product", new { productdId = product.id})">@product.title</a>
+                                            <a href="@Url.Action("Index", "Product", new { productdId = productInfo.product.id})">@productInfo.product.title</a>
                                         </td>
                                         <td>
-                                            <input ng-change="quantityChange(@product)" type="number" ng-model="quantity" ng-init="quantity=1" class="form-control">
+                                            {{@productInfo.quantity}}
                                         </td>
-                                        <td>{{@product.newprice}}.00</td>
+                                        <td>{{@productInfo.product.newprice}}.00</td>
                                         <td>0.00</td>
-                                        <td>{{@product.newprice}}.00</td>
+                                        <td>{{@itemTotal}}.00</td>
                                         <td>
                                             <a href="#"><i class="fa fa-trash-o"></i></a>
                                         </td>
                                     </tr>
-                                    iterator++;
                                   }
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th colspan="5">Total</th>
-                                        <th colspan="2">$446.00</th>
+                                        <th colspan="2">{{@total}}.00</th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -102,19 +104,19 @@
                             <tbody>
                                 <tr>
                                     <td>Order subtotal</td>
-                                    <th>$446.00</th>
+                                    <th>{{@total}}.00</th>
                                 </tr>
                                 <tr>
-                                    <td>Shipping and handling</td>
-                                    <th>$10.00</th>
+                                    <td>handling</td>
+                                    <th>0.00</th>
                                 </tr>
                                 <tr>
                                     <td>Tax</td>
-                                    <th>$0.00</th>
+                                    <th>0.00</th>
                                 </tr>
                                 <tr class="total">
                                     <td>Total</td>
-                                    <th>$456.00</th>
+                                    <th>{{@total}}.00</th>
                                 </tr>
                             </tbody>
                         </table>

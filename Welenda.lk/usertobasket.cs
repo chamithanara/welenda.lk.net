@@ -17,6 +17,7 @@ namespace Welenda.lk
         public int id { get; set; }
         public int userId { get; set; }
         public int productId { get; set; }
+        public Nullable<int> quantity { get; set; }
     
         public virtual product product { get; set; }
     }

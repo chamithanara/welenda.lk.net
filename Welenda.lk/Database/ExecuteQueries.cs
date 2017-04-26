@@ -301,7 +301,7 @@ namespace Welenda.lk.Database
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public ResultModel ProductAddToCart(int prodId, string userId, string name)
+        public ResultModel ProductAddToCart(int prodId, int quantity, string userId, string name)
         {
             using (var db = new welendadbContext())
             {
@@ -317,7 +317,7 @@ namespace Welenda.lk.Database
                                                        ub.userId == user.id))
                         {
                             var userToBasket = db.Set<usertobasket>();
-                            userToBasket.Add(new usertobasket { userId = user.id, productId = prodId });
+                            userToBasket.Add(new usertobasket { userId = user.id, productId = prodId, quantity = quantity });
 
                             db.SaveChanges();
                             return new ResultModel { errorCode = ErrorCodes.success };
@@ -380,11 +380,15 @@ namespace Welenda.lk.Database
                     if (user != null)
                     {
                         var items = db.usertobaskets.Where(ub => ub.userId == user.id);
-                        var productsList = new List<product>();
+                        var productsList = new List<ProductToQuantity>();
 
                         foreach (var item in items)
                         {
-                            productsList.Add(item.product);
+                            var productToQuantityModel = new ProductToQuantity();
+                            productToQuantityModel.product = item.product;
+                            productToQuantityModel.quantity = item.quantity;
+
+                            productsList.Add(productToQuantityModel);
                         }
 
                         return new ResultModel { cartProductList = productsList, errorCode = ErrorCodes.success };

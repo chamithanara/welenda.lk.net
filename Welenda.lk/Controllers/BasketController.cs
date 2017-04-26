@@ -19,10 +19,10 @@ namespace Welenda.lk.Controllers
             return View();
         }
 
-        public JsonResult AddItemToBasket(int productId, string userId, string name)
+        public JsonResult AddItemToBasket(int productId, int quantity, string userId, string name)
         {
             var execute = new ExecuteQueries();
-            var result = execute.ProductAddToCart(productId, userId, name);
+            var result = execute.ProductAddToCart(productId, quantity, userId, name);
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
