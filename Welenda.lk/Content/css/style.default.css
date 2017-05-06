@@ -1,3 +1,87 @@
+.select-style {
+    border: 1px solid #ccc;
+    width: 50px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa url("img/icon-select.png") no-repeat 90% 50%;
+}
+
+.select-style select {
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.select-style select:focus {
+    outline: none;
+}
+
+.maxl{
+  margin:25px;
+}
+.inline{
+  display: inline-block;
+}
+.inline + .inline{
+  margin-left:10px;
+}
+.radio{
+  color:#999;
+  font-size:15px;
+  position:relative;
+}
+.radio span{
+  position:relative;
+   padding-left:20px;
+}
+.radio span:after{
+  content:'';
+  width:15px;
+  height:15px;
+  border:3px solid;
+  position:absolute;
+  left:0;
+  top:1px;
+  border-radius:100%;
+  -ms-border-radius:100%;
+  -moz-border-radius:100%;
+  -webkit-border-radius:100%;
+  box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+}
+.radio input[type="radio"]{
+   cursor: pointer; 
+  position:absolute;
+  width:100%;
+  height:100%;
+  z-index: 1;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"
+}
+.radio input[type="radio"]:checked + span{
+  color:#0B8;  
+}
+.radio input[type="radio"]:checked + span:before{
+    content:'';
+  width:5px;
+  height:5px;
+  position:absolute;
+  background:#0B8;
+  left:5px;
+  top:6px;
+  border-radius:100%;
+  -ms-border-radius:100%;
+  -moz-border-radius:100%;
+  -webkit-border-radius:100%;
+}
+
 a,
 button {
   -webkit-transition: all 0.2s ease-out;
@@ -165,6 +249,10 @@ h1 {
   display: none;
 }
 
+.sliderHeight {
+    height: 350px;
+}
+
 #hot h2 {
   text-transform: uppercase;
   font-size: 19px;
@@ -206,10 +294,10 @@ h1 {
 }
 #advantages .box .icon {
   position: absolute;
-  font-size: 106px;
-  width: 100%;
+  font-size: 58px;
+  width: 100%;    
   text-align: center;
-  top: -20px;
+  top: 17px;
   left: 0;
   height: 100%;
   float: left;
@@ -225,7 +313,8 @@ h1 {
 #advantages .box h3 {
   position: relative;
   margin: 0 0 20px;
-  font-weight: 300;
+  color: rgba(3, 128, 142, 0.88);
+  font-weight: 400;
   text-transform: uppercase;
   z-index: 2;
 }
@@ -239,7 +328,8 @@ h1 {
 }
 #main-slider {
   margin-bottom: 30px;
-  border: solid 1px #fff;
+  border: solid 1px #fff;    
+  height: 350px;
   opacity: 0;
   filter: alpha(opacity=0);
   -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -280,6 +370,18 @@ h1 {
   -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
+
+.productDetailBox {
+  margin: 0 0 30px;
+  border: solid 1px rgba(218, 218, 218, 0.55);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 5px 0px 0px 0px;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
 .box .box-header {
   background: #f7f7f7;
   /*margin: -20px -20px 20px;*/
@@ -493,7 +595,7 @@ a.adisabled {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  margin-bottom: 30px;
+  margin-bottom: 9px;
   /* entire container, keeps perspective */
   /* flip speed goes here */
   /* hide back of pane during swap */
@@ -581,8 +683,8 @@ a.adisabled {
 #content .product .text h3 {
   text-decoration:none;
   color:black;
-  height: 27px;
-  font-size: 12px;
+  height: 23px;
+  font-size: 11px;
   font-weight: 600;
   text-align: center;
   overflow: hidden;
@@ -596,14 +698,14 @@ a.adisabled {
 
 #content .product .text p.price {
   color: red;
-  font-size: 14px;
+  font-size: 13px;
   text-align: center;
   font-weight: 600;
 }
 
 #content .product .text p.priceStrike {
   color: black;
-  font-size: 14px;
+  font-size: 13px;
   text-align: center;
   font-weight: 600;
   text-decoration: line-through;
@@ -653,7 +755,7 @@ a.adisabled {
 }
 
 #content #productMain {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 #content #productMain .goToDescription {
   margin-top: 20px;
@@ -679,7 +781,7 @@ a.adisabled {
   text-decoration:line-through
 }
 #content #productMain .buttons {
-  margin-bottom: 0;
+  margin-bottom: 20px;
   text-align: center;
 }
 #content #productMain .buttons .btn {
@@ -1449,18 +1551,18 @@ hr {
     border-radius: 5px;
 }
 .btn-primary {
-  color: #ffffff;
-  background-color: #4fbfa8;
-  border-color: #41b39c;
+color: #000000;
+    background-color: rgba(191, 131, 79, 0);
+    border-color: rgba(179, 65, 65, 0);
 }
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
-  color: #ffffff;
-  background-color: #3da892;
-  border-color: #318675;
+    color: #0a0a0a;
+    background-color: rgba(61, 168, 146, 0);
+    border-color: rgb(2, 117, 117);
 }
 .btn-primary:active,
 .btn-primary.active,
@@ -1643,7 +1745,7 @@ h2,
 h3,
 .h3 {
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 p,
 ul,

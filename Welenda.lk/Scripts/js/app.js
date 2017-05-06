@@ -195,6 +195,44 @@ app.controller('shoppingCartCtrl', function ($scope, Auth) {
     $scope.gobackHistory = function () {
         window.history.back();
     }
+
+    $scope.removeItemFromBasket = function (prodId, itemTotal) {
+        var productId = prodId;
+
+        if (productId != undefined) {
+            var user = Auth.getUser();
+
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "/Basket/RemoveItem",
+                data: { userId: user.welendaUserId, prodId: productId }
+            })
+                .success(function (data) {
+                    if (data == 0) {
+                        alert('An error occured. Please try again.');
+                    }
+                    else if (data == 1) {
+                        alert('An error occured. Please try again.');
+                    }
+                    else if (data == 3) {
+                        $scope.$apply(function () {
+                            $scope.notificationtext = 'Successfully Removed item from the Basket.';
+                        });
+
+                        $('#' + prodId).remove();
+                        var total = $('#totalValue').html();
+                        $('#totalValue').html(parseFloat(total) - itemTotal);
+
+                        $('.notification').slideDown('fast');
+                        window.setTimeout(notification, 3000);
+                    }
+                })
+                .fail(function (xhr) {
+                    alert(xhr.responseText);
+                });
+        }
+    }
 });
 
 app.controller('AuthCtrl', function($scope, Auth) {

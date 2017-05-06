@@ -16,6 +16,7 @@ namespace Welenda.lk.Controllers
             var result = execute.GetItemsFromCart(id);
 
             ViewBag.productsList = result.cartProductList;
+            ViewBag.userId = id;
             return View();
         }
 
@@ -34,5 +35,14 @@ namespace Welenda.lk.Controllers
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult RemoveItem(string userId, int prodId)
+        {
+            var execute = new ExecuteQueries();
+            var result = execute.RemoveItemFromBasket(userId, prodId);
+
+            return Json(result.errorCode, JsonRequestBehavior.AllowGet);
+        }
+        
     }
 }

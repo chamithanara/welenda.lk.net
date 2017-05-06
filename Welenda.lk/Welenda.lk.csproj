@@ -198,9 +198,11 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AndumHomeController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BasketController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -446,6 +448,8 @@
     <Content Include="welendaDB.edmx.diagram">
       <DependentUpon>welendaDB.edmx</DependentUpon>
     </Content>
+    <Content Include="Views\Checkout\Index.cshtml" />
+    <Content Include="Views\AndumHome\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

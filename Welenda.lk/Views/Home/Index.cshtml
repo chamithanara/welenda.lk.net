@@ -6,16 +6,16 @@
             <div class="col-md-12">
                 <div id="main-slider">
                     <div class="item">
-                        <img src="~/Content/img/main-slider1.jpg" alt="" class="img-responsive">
+                        <img src="~/Content/img/main-slider1.jpg" alt="" class="img-responsive sliderHeight">
                     </div>
                     <div class="item">
-                        <img class="img-responsive" src="~/Content/img/main-slider2.jpg" alt="">
+                        <img class="img-responsive sliderHeight" src="~/Content/img/main-slider2.jpg" alt="">
                     </div>
                     <div class="item">
-                        <img class="img-responsive" src="~/Content/img/main-slider1.jpg" alt="">
+                        <img class="img-responsive sliderHeight" src="~/Content/img/main-slider1.jpg" alt="">
                     </div>
                     <div class="item">
-                        <img class="img-responsive" src="~/Content/img/main-slider2.jpg" alt="">
+                        <img class="img-responsive sliderHeight" src="~/Content/img/main-slider2.jpg" alt="">
                     </div>
                 </div>
                 <!-- /#main-slider -->
@@ -27,34 +27,34 @@
             <div class="container">
                 <div class="same-height-row">
                     <div class="col-sm-4">
-                        <div class="box same-height clickable">
+                        <div class="box same-height">
                             <div class="icon">
                                 <i class="fa fa-heart"></i>
                             </div>
 
-                            <h3 style="font-size:21px"><a href="#">We love our customers</a></h3>
+                            <h3 style="font-size:16px">We love our customers</h3>
                             <p>We are known to provide best possible service ever</p>
                         </div>
                     </div>
 
                     <div class="col-sm-4">
-                        <div class="box same-height clickable">
+                        <div class="box same-height">
                             <div class="icon">
                                 <i class="fa fa-tags"></i>
                             </div>
 
-                            <h3 style="font-size:21px"><a href="#">Best prices</a></h3>
+                            <h3 style="font-size:16px">Best prices</h3>
                             <p>You can check that the height of the boxes adjust when longer text like this one is used in one of them.</p>
                         </div>
                     </div>
 
                     <div class="col-sm-4">
-                        <div class="box same-height clickable">
+                        <div class="box same-height">
                             <div class="icon">
                                 <i class="fa fa-thumbs-up"></i>
                             </div>
 
-                            <h3 style="font-size:21px"><a href="#">100% satisfaction guaranteed</a></h3>
+                            <h3 style="font-size:16px">100% satisfaction guaranteed</h3>
                             <p>On time delivery with courier service.</p>
                         </div>
                     </div>
@@ -62,126 +62,120 @@
             </div>
         </div>
 
+        
+
         <div id="hot">
-
-            <div class="box" style="padding: 0px;background: linear-gradient(135deg, #ffffff 22px, #d9ecff 22px, #d9ecff 24px, transparent 24px, transparent 67px, #d9ecff 67px, #d9ecff 69px, transparent 69px), linear-gradient(225deg, #ffffff 22px, #d9ecff 22px, #d9ecff 24px, transparent 24px, transparent 67px, #d9ecff 67px, #d9ecff 69px, transparent 69px)0 64px; background-color: #ffffff; background-size: 64px 128px">
-                <div class="container">
-                    <div class="col-md-12">
-                        <h2 style="color:#ff0000">Hot this Week</h2>
-                    </div>
-                </div>
-            </div>
-
             <div class="container">
-                <div class="col-md-3" ng-repeat="(key, value) in hotProducts">
-                    <a ng-click="getProductDetails(key, value)">
-                        <div class="item">
-                            <div class="product">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front">
-                                            <div href="detail.html">
-                                                <img ng-src="~/Content/img/{{value[1]}}" alt="" class="img-responsive">
+                <div class="box same-height">
+                    <h4 style="font-size:17px; color:#246777; margin-bottom: 24px;">Hot Products</h4>
+
+                    <div class="container">
+                        <div class="col-md-3" ng-repeat="(key, value) in hotProducts">
+                            <a ng-click="getProductDetails(key, value)">
+                                <div class="item">
+                                    <div class="product">
+                                        <div class="flip-container">
+                                            <div class="flipper">
+                                                <div class="front">
+                                                    <div href="detail.html">
+                                                        <img ng-src="~/Content/img/{{value[1]}}" alt="" class="img-responsive">
+                                                    </div>
+                                                </div>
                                             </div>
+                                        </div>
+                                        <div href="detail.html" class="invisible">
+                                            <img ng-src="~/Content/img/{{value[1]}}" alt="" class="img-responsive">
+                                        </div>
+                                        <div class="text">
+                                            <h3>{{value[0]}}</h3>
+                                            <p class="priceStrike">Rs. {{value[2]}}</p>
+                                            <p class="price">Rs. {{value[3]}}</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div href="detail.html" class="invisible">
-                                    <img ng-src="~/Content/img/{{value[1]}}" alt="" class="img-responsive">
-                                </div>
-                                <div class="text">
-                                    <h3>{{value[0]}}</h3>
-                                    <p class="priceStrike">Rs. {{value[2]}}</p>
-                                    <p class="price">Rs. {{value[3]}}</p>
-                                </div>
-                            </div>
+                            </a>
                         </div>
-                    </a>
+                    </div>
+
                 </div>
             </div>
         </div>
 
         <div id="hot">
-
-            <div class="box" style="padding: 0px;background: linear-gradient(135deg, #ffffff 22px, #d9ecff 22px, #d9ecff 24px, transparent 24px, transparent 67px, #d9ecff 67px, #d9ecff 69px, transparent 69px), linear-gradient(225deg, #ffffff 22px, #d9ecff 22px, #d9ecff 24px, transparent 24px, transparent 67px, #d9ecff 67px, #d9ecff 69px, transparent 69px)0 64px;
-            background-color: #ffffff;
-            background-size: 64px 128px">
-                <div class="container">
-                    <div class="col-md-12">
-                        <h2 style="color:#246777">Electronics</h2>
-                    </div>
-                </div>
-            </div>
-
             <div class="container">
-                <div class="col-md-3" ng-repeat="(key, value) in ElectornicsProducts">
-                    <a ng-click="getProductDetails(key, value)">
-                        <div class="item">
-                            <div class="product">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front">
-                                            <div href="detail.html">
-                                                <img ng-src="~/Content/img/{{value[1]}}" alt="" class="img-responsive">
+                <div class="box same-height">
+                    <h4 style="font-size:17px; color:#246777; margin-bottom: 24px;">Electronics</h4>
+
+                    <div class="container">
+                        <div class="col-md-3" ng-repeat="(key, value) in ElectornicsProducts">
+                            <a ng-click="getProductDetails(key, value)">
+                                <div class="item">
+                                    <div class="product">
+                                        <div class="flip-container">
+                                            <div class="flipper">
+                                                <div class="front">
+                                                    <div href="detail.html">
+                                                        <img ng-src="~/Content/img/{{value[1]}}" alt="" class="img-responsive">
+                                                    </div>
+                                                </div>
                                             </div>
+                                        </div>
+                                        <div href="detail.html" class="invisible">
+                                            <img ng-src="~/Content/img/{{value[1]}}" alt="" class="img-responsive">
+                                        </div>
+                                        <div class="text">
+                                            <h3>{{value[0]}}</h3>
+                                            <p class="priceStrike">Rs. {{value[2]}}</p>
+                                            <p class="price">Rs. {{value[3]}}</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div href="detail.html" class="invisible">
-                                    <img ng-src="~/Content/img/{{value[1]}}" alt="" class="img-responsive">
-                                </div>
-                                <div class="text">
-                                    <h3>{{value[0]}}</h3>
-                                    <p class="priceStrike">Rs. {{value[2]}}</p>
-                                    <p class="price">Rs. {{value[3]}}</p>
-                                </div>
-                            </div>
+                            </a>
                         </div>
-                    </a>
+                    </div>
+
                 </div>
             </div>
         </div>
+
 
         <div id="hot">
-
-            <div class="box" style="padding: 0px;background: linear-gradient(135deg, #ffffff 22px, #d9ecff 22px, #d9ecff 24px, transparent 24px, transparent 67px, #d9ecff 67px, #d9ecff 69px, transparent 69px), linear-gradient(225deg, #ffffff 22px, #d9ecff 22px, #d9ecff 24px, transparent 24px, transparent 67px, #d9ecff 67px, #d9ecff 69px, transparent 69px)0 64px;
-            background-color: #ffffff;
-            background-size: 64px 128px">
-                <div class="container">
-                    <div class="col-md-12">
-                        <h2 style="color:#246777">Toys</h2>
-                    </div>
-                </div>
-            </div>
-
             <div class="container">
-                <div class="col-md-3" ng-repeat="(key, value) in ToyProducts">
-                    <a ng-click="getProductDetails(key, value)">
-                        <div class="item">
-                            <div class="product">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front">
-                                            <div href="detail.html">
-                                                <img ng-src="~/Content/img/{{value[1]}}" alt="" class="img-responsive">
+                <div class="box same-height">
+                    <h4 style="font-size:17px; color:#246777; margin-bottom: 24px;">Toys</h4>
+
+                    <div class="container">
+                        <div class="col-md-3" ng-repeat="(key, value) in ToyProducts">
+                            <a ng-click="getProductDetails(key, value)">
+                                <div class="item">
+                                    <div class="product">
+                                        <div class="flip-container">
+                                            <div class="flipper">
+                                                <div class="front">
+                                                    <div href="detail.html">
+                                                        <img ng-src="~/Content/img/{{value[1]}}" alt="" class="img-responsive">
+                                                    </div>
+                                                </div>
                                             </div>
+                                        </div>
+                                        <div href="detail.html" class="invisible">
+                                            <img ng-src="~/Content/img/{{value[1]}}" alt="" class="img-responsive">
+                                        </div>
+                                        <div class="text">
+                                            <h3>{{value[0]}}</h3>
+                                            <p class="priceStrike">Rs. {{value[2]}}</p>
+                                            <p class="price">Rs. {{value[3]}}</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div href="detail.html" class="invisible">
-                                    <img ng-src="~/Content/img/{{value[1]}}" alt="" class="img-responsive">
-                                </div>
-                                <div class="text">
-                                    <h3>{{value[0]}}</h3>
-                                    <p class="priceStrike">Rs. {{value[2]}}</p>
-                                    <p class="price">Rs. {{value[3]}}</p>
-                                </div>
-                            </div>
+                            </a>
                         </div>
-                    </a>
+                    </div>
+
                 </div>
             </div>
         </div>
+
 
         <div class="container">
             <div class="col-md-12">

@@ -404,6 +404,37 @@ namespace Welenda.lk.Database
                     return new ResultModel { errorCode = ErrorCodes.exception, result = null };
                 }
             }
-        }        
+        }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public ResultModel RemoveItemFromBasket(string userId, int prodId)
+        {
+            using (var db = new welendadbContext())
+            {
+                try
+                {
+                    var user = db.users.SingleOrDefault(u => u.uid.Trim().Equals(userId));
+                    var userToBasket = db.usertobaskets.SingleOrDefault(u => u.userId == user.id && 
+                                                                            u.productId == prodId);
+
+                    if (user != null && userToBasket != null)
+                    {
+                        db.usertobaskets.Remove(userToBasket);
+                        db.SaveChanges();
+
+                        return new ResultModel { errorCode = ErrorCodes.success };
+                    }
+                    else
+                    {
+                        return new ResultModel { errorCode = ErrorCodes.error };
+                    }
+                }
+                catch (Exception e)
+                {
+                    var msg = e.Message;
+                    return new ResultModel { errorCode = ErrorCodes.exception, result = null };
+                }
+            }
+        }
     }    
 }
