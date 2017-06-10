@@ -157,7 +157,7 @@ app.controller('ProdDetailsCtrl', function ($scope, Auth) {
                         });
                     }
                     else {
-                        alertify.alert('Please select an item quantity..', function () { });
+                        alertify.alert('Select a Quantity', 'Please select an item quantity..', function () { });
                     }
                 },
                 function () {
@@ -190,6 +190,10 @@ function ShowLoginAlert(){
                 "<a href=\"/Auth/Register/\" style=\"float:right\" class=\"btn btn-default\"><i class=\"fa fa-users\"></i>Register</a>" +
             "</div>")
 }
+
+app.controller('AndumHomeCtrl', function ($scope, Auth) {
+ 
+});
 
 app.controller('shoppingCartCtrl', function ($scope, Auth) {
     $scope.gobackHistory = function () {

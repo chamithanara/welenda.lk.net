@@ -1,9 +1,64 @@
+
+
+.buttonAndum{
+  position: relative;
+   padding: 10px;
+   margin: 9px 0px 34px;
+   width: 264px;
+   background: #ff0030;
+   color: #fff;
+    outline: none;
+   font-size: 26px;
+   font-weight: bold;
+   line-height: 1.3em;
+   border: 2px dashed #fff;
+   border-radius: 10px;
+   box-shadow: 0 0 0 4px #ff0030, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+   text-shadow: -1px -1px #aa3030;
+   font-weight: normal;
+ }
+
+buttonAndum:active {
+	-webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 1);
+    -moz-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 1);
+    box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 1);
+	margin-top:2px;
+    -webkit-transition: all 0.1s ease;
+    -moz-transition:    all 0.1s ease;
+    -ms-transition:     all 0.1s ease;
+    -o-transition:      all 0.1s ease;
+}
+
+.buttonAndum span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.buttonAndum span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.buttonAndum:hover span {
+  padding-right: 25px;
+}
+
+.buttonAndum:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
 .select-style {
     border: 1px solid #ccc;
     width: 50px;
     border-radius: 3px;
     overflow: hidden;
-    background: #fafafa url("img/icon-select.png") no-repeat 90% 50%;
 }
 
 .select-style select {
@@ -738,21 +793,14 @@ a.adisabled {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
 }
 
-#mainImage img {
-    -webkit-transition: all 1s ease; /* Safari and Chrome */
-  	-moz-transition: all 1s ease; /* Firefox */
-  	-o-transition: all 1s ease; /* IE 9 */
-  	-ms-transition: all 1s ease; /* Opera */
-  	transition: all 1s ease;
-}
-
 #mainImage:hover img {
-    -webkit-transform:scale(1.05); /* Safari and Chrome */
-    -moz-transform:scale(1.05); /* Firefox */
-    -ms-transform:scale(1.05); /* IE 9 */
-    -o-transform:scale(1.05); /* Opera */
+    overflow:hidden;
+    -webkit-transform:scale(1.05);  
+    -moz-transform:scale(1.05); 
+    -ms-transform:scale(1.05); 
+    -o-transform:scale(1.05); 
      transform:scale(1.05);
-}
+} 
 
 #content #productMain {
   margin-bottom: 10px;
@@ -1543,31 +1591,31 @@ hr {
 }
 /* buttons  */
 .btn {
-    font-weight: normal;
-    font-family: "Roboto", Helvetica, Arial, sans-serif;
-    padding: 8px 28px;
-    font-size: 14px;
-    line-height: 1.428571;
-    border-radius: 5px;
+    font-weight: normal !important;
+    font-family: "Roboto", Helvetica, Arial, sans-serif !important;
+    padding: 8px 28px !important;
+    font-size: 14px !important;
+    line-height: 1.428571 !important;
+    border-radius: 5px !important;
 }
 .btn-primary {
-color: #000000;
-    background-color: rgba(191, 131, 79, 0);
-    border-color: rgba(179, 65, 65, 0);
+color: #000000 !important;
+    background-color: rgba(191, 131, 79, 0) !important;
+    border-color: rgba(179, 65, 65, 0) !important;
 }
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
-    color: #0a0a0a;
-    background-color: rgba(61, 168, 146, 0);
-    border-color: rgb(2, 117, 117);
+    color: #0a0a0a !important;
+    background-color: rgba(61, 168, 146, 0) !important;
+    border-color: rgb(2, 117, 117) !important;
 }
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
-  background-image: none;
+  background-image: none !important;
 }
 .btn-primary.disabled,
 .btn-primary[disabled],
@@ -1584,12 +1632,12 @@ fieldset[disabled] .btn-primary:active,
 .btn-primary.disabled.active,
 .btn-primary[disabled].active,
 fieldset[disabled] .btn-primary.active {
-  background-color: #4fbfa8;
-  border-color: #41b39c;
+  background-color: #4fbfa8 !important;
+  border-color: #41b39c !important;
 }
 .btn-primary .badge {
-  color: #4fbfa8;
-  background-color: #ffffff;
+  color: #4fbfa8 !important;
+  background-color: #ffffff !important;
 }
 .btn-lg {
   padding: 10px 16px;

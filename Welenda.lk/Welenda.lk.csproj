@@ -198,6 +198,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AndumDesignerController.cs" />
     <Compile Include="Controllers\AndumHomeController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BasketController.cs" />
@@ -219,6 +220,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\ProductToQuantity.cs" />
+    <Compile Include="Models\ProductTypes.cs" />
     <Compile Include="Models\ResultModel.cs" />
     <Compile Include="product.cs">
       <DependentUpon>welendaDB.tt</DependentUpon>
@@ -267,12 +269,16 @@
     <Content Include="Content\css\owl.carousel.css" />
     <Content Include="Content\css\owl.theme.css" />
     <Content Include="Content\css\owl.transitions.css" />
+    <Content Include="Content\css\perfectScroll.css" />
     <Content Include="Content\css\style.blue.css" />
     <Content Include="Content\css\style.default.css" />
     <Content Include="Content\css\style.green.css" />
     <Content Include="Content\css\style.mono.css" />
     <Content Include="Content\css\style.pink.css" />
     <Content Include="Content\css\style.violet.css" />
+    <Content Include="Content\css\tdesginer.css" />
+    <Content Include="Content\css\woocommerce.css" />
+    <Content Include="Content\img\ajax-loader.gif" />
     <Content Include="Content\img\AjaxLoader.gif" />
     <Content Include="Content\img\banner.jpg" />
     <Content Include="Content\img\banner2.jpg" />
@@ -314,6 +320,11 @@
     <Content Include="Content\img\slider2.jpg" />
     <Content Include="Content\img\slider3.jpg" />
     <Content Include="Content\img\slider4.jpg" />
+    <Content Include="Scripts\addons.js" />
+    <Content Include="Scripts\canvg.js" />
+    <Content Include="Scripts\designer.js" />
+    <Content Include="Scripts\designUpload.js" />
+    <Content Include="Scripts\jQueryUi.js" />
     <Content Include="Scripts\js\angular-animate\angular-animate.js" />
     <Content Include="Scripts\js\angular-animate\angular-animate.min.js" />
     <Content Include="Scripts\js\angular-animate\index.js" />
@@ -387,6 +398,10 @@
     <Content Include="Scripts\js\angular-websocket\CHANGELOG.md" />
     <Content Include="Scripts\js\angular-websocket\LICENSE" />
     <Content Include="Scripts\js\angular-websocket\README.md" />
+    <Content Include="Scripts\maindesigner.css" />
+    <Content Include="Scripts\mainDesigner.js" />
+    <Content Include="Scripts\rgbcolor.js" />
+    <Content Include="Scripts\rotatable.js" />
     <Content Include="welendaDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>welendaDB.edmx</DependentUpon>
@@ -441,6 +456,9 @@
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Basket\Index.cshtml" />
+    <Content Include="Views\Checkout\Index.cshtml" />
+    <Content Include="Views\AndumHome\index.cshtml" />
+    <Content Include="Views\AndumDesigner\index.cshtml" />
     <EntityDeploy Include="welendaDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>welendaDB.Designer.cs</LastGenOutput>
@@ -448,11 +466,11 @@
     <Content Include="welendaDB.edmx.diagram">
       <DependentUpon>welendaDB.edmx</DependentUpon>
     </Content>
-    <Content Include="Views\Checkout\Index.cshtml" />
-    <Content Include="Views\AndumHome\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\wp-content\" />
+    <Folder Include="Content\wp-includes\" />
     <Folder Include="Scripts\js\angular-ui-router\api\" />
     <Folder Include="Scripts\js\angular-ui-router\release\" />
     <Folder Include="Scripts\js\angular-ui-router\src\" />

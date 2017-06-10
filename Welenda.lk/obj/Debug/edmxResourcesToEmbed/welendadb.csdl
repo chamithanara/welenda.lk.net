@@ -36,6 +36,7 @@
     <Property Name="mainSubCategory" Type="Int32" />
     <Property Name="subCategory" Type="Int32" />
     <Property Name="isinhomepage" Type="Boolean" />
+    <Property Name="productType" Type="Int32" />
     <NavigationProperty Name="productdetails" Relationship="Self.FK_productdetail_products" FromRole="products" ToRole="productdetail" />
     <NavigationProperty Name="productinfoes" Relationship="Self.FK_productinfo_products1" FromRole="products" ToRole="productinfo" />
     <NavigationProperty Name="usertobaskets" Relationship="Self.FK_usertobasket_products" FromRole="products" ToRole="usertobasket" />

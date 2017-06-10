@@ -12,6 +12,7 @@ using static Welenda.lk.Models.ProductModel;
 using Welenda.lk.External;
 using System.Data.Entity.Infrastructure;
 using System.Data.Objects;
+using static Welenda.lk.Models.ProductTypes;
 
 namespace Welenda.lk.Database
 {
@@ -87,7 +88,7 @@ namespace Welenda.lk.Database
 
                     using (var db = new welendadbContext())
                     {
-                        var L2EQuery = db.products.Where(s => s.ishotproduct == true).ToList();
+                        var L2EQuery = db.products.Where(s => s.ishotproduct == true && s.productType == (int)ProductType.normal).ToList();
 
                         foreach (var product in L2EQuery)
                         {
@@ -129,7 +130,9 @@ namespace Welenda.lk.Database
 
                     using (var db = new welendadbContext())
                     {
-                        var L2EQuery = db.products.Where(s => s.mainCategory == 0 && s.isinhomepage == true);
+                        var L2EQuery = db.products.Where(s => s.mainCategory == 0 && 
+                                                              s.isinhomepage == true && 
+                                                              s.productType == (int)ProductType.normal);
 
                         foreach (var product in L2EQuery)
                         {
@@ -171,7 +174,9 @@ namespace Welenda.lk.Database
 
                     using (var db = new welendadbContext())
                     {
-                        var L2EQuery = db.products.Where(s => s.mainCategory == 1 && s.isinhomepage == true);
+                        var L2EQuery = db.products.Where(s => s.mainCategory == 1 && 
+                                                              s.isinhomepage == true &&
+                                                              s.productType == (int)ProductType.normal);
 
                         foreach (var product in L2EQuery)
                         {

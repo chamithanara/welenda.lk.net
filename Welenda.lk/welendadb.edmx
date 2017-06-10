@@ -39,6 +39,7 @@
           <Property Name="mainSubCategory" Type="int" />
           <Property Name="subCategory" Type="int" />
           <Property Name="isinhomepage" Type="bit" />
+          <Property Name="productType" Type="int" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -155,6 +156,7 @@
           <Property Name="mainSubCategory" Type="Int32" />
           <Property Name="subCategory" Type="Int32" />
           <Property Name="isinhomepage" Type="Boolean" />
+          <Property Name="productType" Type="Int32" />
           <NavigationProperty Name="productdetails" Relationship="Self.FK_productdetail_products" FromRole="products" ToRole="productdetail" />
           <NavigationProperty Name="productinfoes" Relationship="Self.FK_productinfo_products1" FromRole="products" ToRole="productinfo" />
           <NavigationProperty Name="usertobaskets" Relationship="Self.FK_usertobasket_products" FromRole="products" ToRole="usertobasket" />
@@ -275,6 +277,7 @@
                 <ScalarProperty Name="mainSubCategory" ColumnName="mainSubCategory" />
                 <ScalarProperty Name="subCategory" ColumnName="subCategory" />
                 <ScalarProperty Name="isinhomepage" ColumnName="isinhomepage" />
+                <ScalarProperty Name="productType" ColumnName="productType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

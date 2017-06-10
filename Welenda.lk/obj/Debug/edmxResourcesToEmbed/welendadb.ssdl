@@ -34,6 +34,7 @@
     <Property Name="mainSubCategory" Type="int" />
     <Property Name="subCategory" Type="int" />
     <Property Name="isinhomepage" Type="bit" />
+    <Property Name="productType" Type="int" />
   </EntityType>
   <EntityType Name="user">
     <Key>

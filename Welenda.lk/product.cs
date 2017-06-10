@@ -32,6 +32,7 @@ namespace Welenda.lk
         public Nullable<int> mainSubCategory { get; set; }
         public Nullable<int> subCategory { get; set; }
         public Nullable<bool> isinhomepage { get; set; }
+        public Nullable<int> productType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<productdetail> productdetails { get; set; }

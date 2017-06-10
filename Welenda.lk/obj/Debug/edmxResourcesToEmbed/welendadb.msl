@@ -36,6 +36,7 @@
           <ScalarProperty Name="mainSubCategory" ColumnName="mainSubCategory" />
           <ScalarProperty Name="subCategory" ColumnName="subCategory" />
           <ScalarProperty Name="isinhomepage" ColumnName="isinhomepage" />
+          <ScalarProperty Name="productType" ColumnName="productType" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
