@@ -1334,7 +1334,7 @@ var app = angular.module('welendaApp', ['auth.services', 'common.fabric',
             };
 
             $scope.loadProduct = function (title, image, id, price, currency, indexKey) {
-                indexKey = null;
+                //indexKey = null;
                 $scope.counter = 1;
                 if (indexKey != null) {
                     $scope.fabric.designedObjects[$scope.activeDesignObject] = $scope.fabric.exportCanvasObjectAsJson();
