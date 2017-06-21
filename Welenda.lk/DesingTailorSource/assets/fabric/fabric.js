@@ -1563,7 +1563,7 @@ angular.module('common.fabric', [
 
             // My SVG file as s string.
             var mySVG = canvas.toSVG();
-            var currentFontUrl = window.location.href.split('#')[0]+"css/fonts.css";
+            var currentFontUrl = window.location.href.split('#')[0]+"/css/fonts.css";
             $(document).find('.svgElements').html(mySVG);
             var fonts = '<defs><style type="text/css">@import url("http://fonts.googleapis.com/css?family=Lato:400,300|Lobster|Architects+Daughter|Roboto|Oswald|Montserrat|Lora|PT+Sans|Ubuntu|Roboto+Slab|Fjalla+One|Indie+Flower|Playfair+Display|Poiret+One|Dosis|Oxygen|Lobster|Play|Shadows+Into+Light|Pacifico|Dancing+Script|Kaushan+Script|Gloria+Hallelujah|Black+Ops+One|Lobster+Two|Satisfy|Pontano+Sans|Domine|Russo+One|Handlee|Courgette|Special+Elite|Amaranth|Vidaloka");@import url('+currentFontUrl+');</style></defs>';
             $( fonts ).insertAfter( $(document).find( ".svgElements > svg > desc" ) );

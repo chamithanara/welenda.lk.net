@@ -1627,7 +1627,7 @@ var app = angular.module('welendaApp', ['auth.services', 'common.fabric',
                     $scope.loadMore = data.settings.general_settings.loadMore;
 
 
-                    $scope.changeColorScheme();
+                    //$scope.changeColorScheme();
                     _this.initProducts();
                     $scope.loadProduct($scope.defaultProductTitle, $scope.defaultProductImage, $scope.defaultProductId, $scope.defaultPrice, $scope.defaultCurrency);
                     _this.initGraphics();

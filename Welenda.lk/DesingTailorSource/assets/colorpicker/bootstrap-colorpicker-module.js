@@ -414,7 +414,8 @@ angular.module('colorpicker.module', [])
               pickerColor[slider.callTop].call(pickerColor, top / 100);
             }
             previewColor();
-            var newColor = pickerColor[thisFormat]();
+            var newColor = pickerColor.toHex();
+            colorpickerPreview.css('backgroundColor', newColor);
             elem.val(newColor);
             if(ngModel) {
               $scope.$apply(ngModel.$setViewValue(newColor));
