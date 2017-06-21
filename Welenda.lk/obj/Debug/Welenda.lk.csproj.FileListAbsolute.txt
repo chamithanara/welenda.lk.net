@@ -80,3 +80,167 @@ c:\users\chamitha narawita\documents\visual studio 2015\Projects\Welenda.lk\Wele
 c:\users\chamitha narawita\documents\visual studio 2015\Projects\Welenda.lk\Welenda.lk\obj\Debug\Welenda.lk.csprojResolveAssemblyReference.cache
 c:\users\chamitha narawita\documents\visual studio 2015\Projects\Welenda.lk\Welenda.lk\obj\Debug\Welenda.lk.dll
 c:\users\chamitha narawita\documents\visual studio 2015\Projects\Welenda.lk\Welenda.lk\obj\Debug\Welenda.lk.pdb
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\ApplicationInsights.config
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\roslyn\csc.exe
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\roslyn\vbc.exe
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\roslyn\VBCSCompiler.exe
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Welenda.lk.dll.config
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Welenda.lk.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Welenda.lk.pdb
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Antlr3.Runtime.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\EntityFramework.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\EntityFramework.SqlServer.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.AI.Web.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.ApplicationInsights.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Newtonsoft.Json.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Owin.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\System.Web.Helpers.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\System.Web.Mvc.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\System.Web.Optimization.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\System.Web.Razor.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\System.Web.WebPages.Deployment.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\System.Web.WebPages.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\System.Web.WebPages.Razor.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\WebGrease.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.AI.Web.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.ApplicationInsights.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\System.Web.Helpers.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\System.Web.Mvc.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\System.Web.Optimization.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\System.Web.Razor.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\System.Web.WebPages.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\System.Web.WebPages.Deployment.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\System.Web.WebPages.Razor.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Antlr3.Runtime.pdb
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Newtonsoft.Json.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\EntityFramework.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\EntityFramework.SqlServer.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\obj\Debug\Welenda.lk.csprojResolveAssemblyReference.cache
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\obj\Debug\Welenda.lk.dll
+C:\Users\chamitha\Desktop\Welenda.lk\Welenda.lk\obj\Debug\Welenda.lk.pdb
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\ApplicationInsights.config
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\roslyn\csc.exe
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\roslyn\vbc.exe
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\roslyn\VBCSCompiler.exe
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Welenda.lk.dll.config
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Welenda.lk.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Welenda.lk.pdb
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Antlr3.Runtime.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\EntityFramework.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\EntityFramework.SqlServer.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.AI.Web.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.ApplicationInsights.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Newtonsoft.Json.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Owin.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\System.Web.Helpers.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\System.Web.Mvc.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\System.Web.Optimization.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\System.Web.Razor.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\System.Web.WebPages.Deployment.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\System.Web.WebPages.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\System.Web.WebPages.Razor.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\WebGrease.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.AI.Web.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.ApplicationInsights.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\System.Web.Helpers.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\System.Web.Mvc.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\System.Web.Optimization.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\System.Web.Razor.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\System.Web.WebPages.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\System.Web.WebPages.Deployment.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\System.Web.WebPages.Razor.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Antlr3.Runtime.pdb
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Newtonsoft.Json.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\EntityFramework.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\EntityFramework.SqlServer.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\obj\Debug\Welenda.lk.csprojResolveAssemblyReference.cache
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\obj\Debug\Welenda.lk.dll
+C:\Users\chamitha\Documents\Visual Studio 2015\Projects\Welenda.lk\Welenda.lk\obj\Debug\Welenda.lk.pdb
