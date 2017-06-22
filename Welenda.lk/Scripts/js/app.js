@@ -36,7 +36,7 @@ app.controller('ProductCtrl', [
             right: true
         };
 
-        var SETTINGS_INIT_URL = "DesingTailorSource/inc/json/settings.json";
+        var SETTINGS_INIT_URL = "DesingSource/inc/json/settings.json";
 
         $scope.NOTIFICATION_MESSAGES = [];
         $scope.REQUEST_URL = [];

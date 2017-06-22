@@ -248,27 +248,28 @@ namespace Welenda.lk.Database
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public ResultModel GetProductsForCategory(string category)
+        public ResultModel GetProductsForCategory(string main, string sub)
         {
             try
             {
-                var catergoryDetails = new CategoryDetails().GetDategoryDetails(category);
+                var mainDetails = new CategoryDetails().GetDategoryDetails(main);
+                var subDetails = new CategoryDetails().GetDategoryDetails(sub);
                 var L2EQuery = new List<product>();
 
                 using (var db = new welendadbContext())
                 {
-                    if (catergoryDetails.fieldName.Equals("mainCategory"))
-                    {
-                        L2EQuery = db.products.Where(s => s.mainCategory == catergoryDetails.categoryId).ToList();
-                    }
-                    else if (catergoryDetails.fieldName.Equals("mainSubCategory"))
-                    {
-                        L2EQuery = db.products.Where(s => s.mainSubCategory == catergoryDetails.categoryId).ToList();
-                    }
-                    else if (catergoryDetails.fieldName.Equals("subCategory"))
-                    {
-                        L2EQuery = db.products.Where(s => s.subCategory == catergoryDetails.categoryId).ToList();
-                    }
+                    //if (catergoryDetails.fieldName.Equals("mainCategory"))
+                    //{
+                        L2EQuery = db.products.Where(s => s.mainCategory == mainDetails.categoryId && s.mainSubCategory == subDetails.categoryId).ToList();
+                    //}
+                    //else if (catergoryDetails.fieldName.Equals("mainSubCategory"))
+                    //{
+                    //    L2EQuery = db.products.Where(s => s.mainSubCategory == catergoryDetails.categoryId).ToList();
+                    //}
+                    //else if (catergoryDetails.fieldName.Equals("subCategory"))
+                    //{
+                    //    L2EQuery = db.products.Where(s => s.subCategory == catergoryDetails.categoryId).ToList();
+                    //}
 
                     lock (this)
                     {
@@ -287,13 +288,14 @@ namespace Welenda.lk.Database
                             str.Add(id, data);
                         }
 
+                        string title = mainDetails.categoryTitle + "-" + subDetails.categoryTitle;
                         if (str.Count != 0)
                         {
-                            return new ResultModel { errorCode = ErrorCodes.success, ElectornicsProducts = str, categoryTitle = catergoryDetails.categoryTitle };
+                            return new ResultModel { errorCode = ErrorCodes.success, ElectornicsProducts = str, categoryTitle = title };
                         }
                         else
                         {
-                            return new ResultModel { errorCode = ErrorCodes.success, categoryTitle = catergoryDetails.categoryTitle };
+                            return new ResultModel { errorCode = ErrorCodes.success, categoryTitle = title };
                         }
                     }
                 }

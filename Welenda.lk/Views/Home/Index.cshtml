@@ -2,7 +2,7 @@
 
     <div id="content">
 
-        <div class="container">
+        @*<div class="container">
             <div class="col-md-12">
                 <div id="main-slider">
                     <div class="item">
@@ -18,50 +18,49 @@
                         <img class="img-responsive sliderHeight" src="~/Content/img/main-slider2.jpg" alt="">
                     </div>
                 </div>
-                <!-- /#main-slider -->
             </div>
-        </div>
+        </div>*@
 
-        <div id="advantages">
 
-            <div class="container">
-                <div class="same-height-row">
-                    <div class="col-sm-4">
-                        <div class="box same-height">
-                            <div class="icon">
-                                <i class="fa fa-heart"></i>
+        <div id="all" ng-controller="AndumHomeCtrl">
+
+            <div id="content">
+
+                <div class="container">
+                    <div class="col-md-12">
+                        <div id="main-slider">
+                            <div class="item">
+                                <img src="~/Content/img/adumSlider3.jpg" alt="" class="img-responsive sliderHeight">
                             </div>
-
-                            <h3 style="font-size:16px">We love our customers</h3>
-                            <p>We are known to provide best possible service ever</p>
+                            <div class="item">
+                                <img class="img-responsive sliderHeight" src="~/Content/img/adumSlider2.png" alt="">
+                            </div>
+                            <div class="item">
+                                <img class="img-responsive sliderHeight" src="~/Content/img/adumSlider3.jpg" alt="">
+                            </div>
+                            <div class="item">
+                                <img class="img-responsive sliderHeight" src="~/Content/img/adumSlider1.jpg" alt="">
+                            </div>
                         </div>
+                        <!-- /#main-slider -->
                     </div>
+                </div>
 
-                    <div class="col-sm-4">
-                        <div class="box same-height">
-                            <div class="icon">
-                                <i class="fa fa-tags"></i>
+                <div id="advantages">
+                    <div class="container">
+                        <div class="same-height-row">
+                            <div class="col-md-12" style="margin-bottom: 38px;">
+                                <h4 style="font-size:17px; color:#246777; margin-bottom: 29px;margin-top: -4px;">Click Here to Create a New T-Shirt Design. Let's Get Creative.</h4>
+
+                                <a class="buttonAndum" href="@Url.Action("Index", "AndumDesigner")">
+                                    <span>Design Your Own</span>
+                                </a>
                             </div>
-
-                            <h3 style="font-size:16px">Best prices</h3>
-                            <p>You can check that the height of the boxes adjust when longer text like this one is used in one of them.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4">
-                        <div class="box same-height">
-                            <div class="icon">
-                                <i class="fa fa-thumbs-up"></i>
-                            </div>
-
-                            <h3 style="font-size:16px">100% satisfaction guaranteed</h3>
-                            <p>On time delivery with courier service.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         
 
         <div id="hot">
@@ -78,13 +77,90 @@
                                             <div class="flipper">
                                                 <div class="front">
                                                     <div href="detail.html">
-                                                        <img ng-src="~/Content/img/{{value[1]}}" alt="" class="img-responsive">
+                                                        <img ng-src="~/DesingSource/data/products/t_shirts/{{value[1]}}" alt="" class="img-responsive">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div href="detail.html" class="invisible">
-                                            <img ng-src="~/Content/img/{{value[1]}}" alt="" class="img-responsive">
+                                            <img ng-src="~/DesingSource/data/products/t_shirts/{{value[1]}}" alt="" class="img-responsive">
+                                        </div>
+                                        <div class="text">
+                                            <h3>{{value[0]}}</h3>
+                                            <p class="priceStrike">Rs. {{value[2]}}</p>
+                                            <p class="price">Rs. {{value[3]}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="advantages">
+
+            <div class="container">
+                <div class="same-height-row">
+                    <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px;">
+                        <div class="box same-height">
+                            <div class="icon">
+                                <i class="fa fa-heart"></i>
+                            </div>
+
+                            <h3 style="font-size:16px">We love our customers</h3>
+                            <p>We are known to provide best possible service ever</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px;">
+                        <div class="box same-height">
+                            <div class="icon">
+                                <i class="fa fa-tags"></i>
+                            </div>
+
+                            <h3 style="font-size:16px">Best prices</h3>
+                            <p>You can check that the height of the boxes adjust when longer text like this one is used in one of them.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4" style="padding-right: 0px; padding-left: 0px;">
+                        <div class="box same-height">
+                            <div class="icon">
+                                <i class="fa fa-thumbs-up"></i>
+                            </div>
+
+                            <h3 style="font-size:16px">100% satisfaction guaranteed</h3>
+                            <p>On time delivery with courier service.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="hot">
+            <div class="container">
+                <div class="box same-height">
+                    <h4 style="font-size:17px; color:#246777; margin-bottom: 24px;">Our Designs</h4>
+
+                    <div class="container">
+                        <div class="col-md-3" ng-repeat="(key, value) in ToyProducts">
+                            <a ng-click="getProductDetails(key, value)">
+                                <div class="item">
+                                    <div class="product"> 
+                                        <div class="flip-container">
+                                            <div class="flipper">
+                                                <div class="front">
+                                                    <div href="detail.html">
+                                                        <img ng-src="~/DesingSource/data/products/t_shirts/{{value[1]}}" alt="" class="img-responsive">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div href="detail.html" class="invisible">
+                                            <img ng-src="~/DesingSource/data/products/t_shirts/{{value[1]}}" alt="" class="img-responsive">
                                         </div>
                                         <div class="text">
                                             <h3>{{value[0]}}</h3>
@@ -104,7 +180,7 @@
         <div id="hot">
             <div class="container">
                 <div class="box same-height">
-                    <h4 style="font-size:17px; color:#246777; margin-bottom: 24px;">Electronics</h4>
+                    <h4 style="font-size:17px; color:#246777; margin-bottom: 24px;">Men's</h4>
 
                     <div class="container">
                         <div class="col-md-3" ng-repeat="(key, value) in ElectornicsProducts">
@@ -115,13 +191,13 @@
                                             <div class="flipper">
                                                 <div class="front">
                                                     <div href="detail.html">
-                                                        <img ng-src="~/Content/img/{{value[1]}}" alt="" class="img-responsive">
+                                                        <img ng-src="~/DesingSource/data/products/t_shirts/{{value[1]}}" alt="" class="img-responsive">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div href="detail.html" class="invisible">
-                                            <img ng-src="~/Content/img/{{value[1]}}" alt="" class="img-responsive">
+                                            <img ng-src="~/DesingSource/data/products/t_shirts/{{value[1]}}" alt="" class="img-responsive">
                                         </div>
                                         <div class="text">
                                             <h3>{{value[0]}}</h3>
@@ -142,7 +218,7 @@
         <div id="hot">
             <div class="container">
                 <div class="box same-height">
-                    <h4 style="font-size:17px; color:#246777; margin-bottom: 24px;">Toys</h4>
+                    <h4 style="font-size:17px; color:#246777; margin-bottom: 24px;">Ladie's</h4>
 
                     <div class="container">
                         <div class="col-md-3" ng-repeat="(key, value) in ToyProducts">
@@ -153,13 +229,13 @@
                                             <div class="flipper">
                                                 <div class="front">
                                                     <div href="detail.html">
-                                                        <img ng-src="~/Content/img/{{value[1]}}" alt="" class="img-responsive">
+                                                        <img ng-src="~/DesingSource/data/products/t_shirts/{{value[1]}}" alt="" class="img-responsive">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div href="detail.html" class="invisible">
-                                            <img ng-src="~/Content/img/{{value[1]}}" alt="" class="img-responsive">
+                                            <img ng-src="~/DesingSource/data/products/t_shirts/{{value[1]}}" alt="" class="img-responsive">
                                         </div>
                                         <div class="text">
                                             <h3>{{value[0]}}</h3>

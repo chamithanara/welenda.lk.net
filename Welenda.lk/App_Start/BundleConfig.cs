@@ -9,7 +9,7 @@ namespace Welenda.lk
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/DesingTailorSource/js/jquery.js"));
+                        "~/DesingSource/js/jquery.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -20,45 +20,45 @@ namespace Welenda.lk
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/DesingTailorSource/js/bootstrap.js",
+                      "~/DesingSource/js/bootstrap.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
                       "~/Scripts/js/respond.min.js",
-                      "~/DesingTailorSource/assets/angular.js",
-                      "~/DesingTailorSource/js/ng-route.js",
+                      "~/DesingSource/assets/angular.js",
+                      "~/DesingSource/js/ng-route.js",
                       "~/Scripts/js/jquery.cookie.js",
-                      "~/DesingTailorSource/assets/angular-animate.js",
-                      "~/DesingTailorSource/assets/angular-aria.js",
-                      "~/DesingTailorSource/assets/angular-material.js",
+                      "~/DesingSource/assets/angular-animate.js",
+                      "~/DesingSource/assets/angular-aria.js",
+                      "~/DesingSource/assets/angular-material.js",
                       "~/Scripts/js/waypoints.min.js",
-                      "~/DesingTailorSource/assets/ng-file-upload/angular-file-upload.js",
-                      "~/DesingTailorSource/assets/ng-file-upload/angular-file-upload-shim.js",
-                      "~/DesingTailorSource/assets/qr-code/raphael-2.1.0-min.j",
-                      "~/DesingTailorSource/assets/qr-code/qrcodesvg.js",
+                      "~/DesingSource/assets/ng-file-upload/angular-file-upload.js",
+                      "~/DesingSource/assets/ng-file-upload/angular-file-upload-shim.js",
+                      "~/DesingSource/assets/qr-code/raphael-2.1.0-min.j",
+                      "~/DesingSource/assets/qr-code/qrcodesvg.js",
                       "~/Scripts/js/modernizr.js",
-                      "~/DesingTailorSource/assets/word-cloud/d3.v3.min.js",
-                      "~/DesingTailorSource/assets/word-cloud/d3.layout.cloud.js",
-                      "~/DesingTailorSource/assets/angular-sanitize.min.js",
-                      "~/DesingTailorSource/assets/ng-scrollbar.min.js",
+                      "~/DesingSource/assets/word-cloud/d3.v3.min.js",
+                      "~/DesingSource/assets/word-cloud/d3.layout.cloud.js",
+                      "~/DesingSource/assets/angular-sanitize.min.js",
+                      "~/DesingSource/assets/ng-scrollbar.min.js",
                       "~/Scripts/js/bootstrap-hover-dropdown.js",
                       "~/Scripts/js/owl.carousel.min.js",
                       "~/Scripts/js/front.js",
-                      "~/DesingTailorSource/assets/fabric/fabric.js",
-                      "~/DesingTailorSource/assets/fabric/fabric.min.js",
-                      "~/DesingTailorSource/assets/fabric/fabricCanvas.js",
-                      "~/DesingTailorSource/assets/fabric/fabricConstants.js",
-                      "~/DesingTailorSource/assets/fabric/fabricDirective.js",
-                      "~/DesingTailorSource/assets/fabric/fabricDirtyStatus.js",
-                      "~/DesingTailorSource/assets/fabric/fabricUtilities.js",
-                      "~/DesingTailorSource/assets/fabric/fabricWindow.js",
-                      "~/DesingTailorSource/assets/fabric/fabric.curvedText.js",
-                      "~/DesingTailorSource/assets/fabric/fabric.customiseControls.js",
-                      "~/DesingTailorSource/assets/colorpicker/bootstrap-colorpicker-module.js",
-                      "~/DesingTailorSource/assets/pdf/jspdf.debug.js",
-                      "~/DesingTailorSource/assets/file/fileSaver.js",
+                      "~/DesingSource/assets/fabric/fabric.js",
+                      "~/DesingSource/assets/fabric/fabric.min.js",
+                      "~/DesingSource/assets/fabric/fabricCanvas.js",
+                      "~/DesingSource/assets/fabric/fabricConstants.js",
+                      "~/DesingSource/assets/fabric/fabricDirective.js",
+                      "~/DesingSource/assets/fabric/fabricDirtyStatus.js",
+                      "~/DesingSource/assets/fabric/fabricUtilities.js",
+                      "~/DesingSource/assets/fabric/fabricWindow.js",
+                      "~/DesingSource/assets/fabric/fabric.curvedText.js",
+                      "~/DesingSource/assets/fabric/fabric.customiseControls.js",
+                      "~/DesingSource/assets/colorpicker/bootstrap-colorpicker-module.js",
+                      "~/DesingSource/assets/pdf/jspdf.debug.js",
+                      "~/DesingSource/assets/file/fileSaver.js",
                       "~/Scripts/js/app.js",
-                      "~/DesingTailorSource/js/application.js"));
+                      "~/DesingSource/js/application.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css/font-awesome.css",

@@ -10,10 +10,10 @@ namespace Welenda.lk.Controllers
     public class CategoryController : Controller
     {
         // GET: Category
-        public ActionResult Index(string catergory)
+        public ActionResult Index(string main, string sub)
         {
             var execute = new ExecuteQueries();
-            var result = execute.GetProductsForCategory(catergory);
+            var result = execute.GetProductsForCategory(main, sub);
 
             ViewBag.results = result.ElectornicsProducts;
             ViewBag.categoryTitle = result.categoryTitle;
