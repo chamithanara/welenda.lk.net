@@ -28,6 +28,7 @@ namespace Welenda.lk
         public virtual DbSet<productdetail> productdetails { get; set; }
         public virtual DbSet<productinfo> productinfoes { get; set; }
         public virtual DbSet<product> products { get; set; }
+        public virtual DbSet<productSubImage> productSubImages { get; set; }
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<usertobasket> usertobaskets { get; set; }
     }

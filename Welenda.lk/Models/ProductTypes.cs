@@ -10,8 +10,8 @@ namespace Welenda.lk.Models
     {
         public enum ProductType
         {
-            normal,
-            andum
+            customizable,
+            nonCustomizable
         };
     }
 }

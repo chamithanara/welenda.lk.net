@@ -40,7 +40,7 @@ namespace Welenda.lk
                       "~/DesingSource/assets/word-cloud/d3.v3.min.js",
                       "~/DesingSource/assets/word-cloud/d3.layout.cloud.js",
                       "~/DesingSource/assets/angular-sanitize.min.js",
-                      "~/DesingSource/assets/ng-scrollbar.min.js",
+                      //"~/DesingSource/assets/ng-scrollbar.min.js",
                       "~/Scripts/js/bootstrap-hover-dropdown.js",
                       "~/Scripts/js/owl.carousel.min.js",
                       "~/Scripts/js/front.js",

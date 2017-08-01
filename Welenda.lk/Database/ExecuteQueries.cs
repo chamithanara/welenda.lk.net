@@ -88,7 +88,7 @@ namespace Welenda.lk.Database
 
                     using (var db = new welendadbContext())
                     {
-                        var L2EQuery = db.products.Where(s => s.ishotproduct == true && s.productType == (int)ProductType.normal).ToList();
+                        var L2EQuery = db.products.Where(s => s.ishotproduct == true).ToList();
 
                         foreach (var product in L2EQuery)
                         {
@@ -131,8 +131,7 @@ namespace Welenda.lk.Database
                     using (var db = new welendadbContext())
                     {
                         var L2EQuery = db.products.Where(s => s.mainCategory == 0 && 
-                                                              s.isinhomepage == true && 
-                                                              s.productType == (int)ProductType.normal);
+                                                              s.isinhomepage == true);
 
                         foreach (var product in L2EQuery)
                         {
@@ -175,8 +174,7 @@ namespace Welenda.lk.Database
                     using (var db = new welendadbContext())
                     {
                         var L2EQuery = db.products.Where(s => s.mainCategory == 1 && 
-                                                              s.isinhomepage == true &&
-                                                              s.productType == (int)ProductType.normal);
+                                                              s.isinhomepage == true);
 
                         foreach (var product in L2EQuery)
                         {
@@ -442,6 +440,79 @@ namespace Welenda.lk.Database
                     return new ResultModel { errorCode = ErrorCodes.exception, result = null };
                 }
             }
+        }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public virtual ResultModel getProducts()
+        {
+            ResultModel result = new ResultModel();
+            List<ProductModel> productModels = new List<ProductModel>();
+            using (var db = new welendadbContext())
+            {
+                db.Configuration.LazyLoadingEnabled = false;
+
+                try
+                {
+                    var products = db.products.Include("productSubImages").ToList();
+
+                    if (products == null)
+                    {
+                        return new ResultModel {errorCode = ErrorCodes.error };
+                    }
+                    else
+                    {
+                        foreach (product product in products)
+                        {
+                            var productModel = new ProductModel();
+
+                            productModel.id = product.id;
+                            productModel.title = product.title.Trim();
+                            productModel.newprice = product.newprice.Trim();
+                            productModel.imgUrl = product.imgurl.Trim();
+
+                            productModels.Add(productModel);
+                        }
+
+                        return new ResultModel { productsList = productModels, errorCode = ErrorCodes.success };
+                    }
+                }
+                catch (Exception e)
+                {
+                    var msg = e.Message;
+                    return new ResultModel { errorCode = ErrorCodes.exception, result = null };
+                }
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public virtual ResultModel getSubImages(int id)
+        {
+            using (var db = new welendadbContext())
+            {
+                try
+                {
+                    var productSubImages = db.productSubImages.Where(p => p.productId == id).Select(a => a.imageUrl).ToList();
+
+                    if (productSubImages == null)
+                    {
+                        return new ResultModel { errorCode = ErrorCodes.error };
+                    }
+                    else
+                    {
+                        return new ResultModel { result = productSubImages, errorCode = ErrorCodes.success };
+                    }
+                }
+                catch (Exception e)
+                {
+                    var msg = e.Message;
+                    return new ResultModel { errorCode = ErrorCodes.exception, result = null };
+                }
+            }
+        }
+
+        public ResultModel saveOrder()
+        {
+            return new ResultModel { errorCode = ErrorCodes.exception, result = null };
         }
     }    
 }

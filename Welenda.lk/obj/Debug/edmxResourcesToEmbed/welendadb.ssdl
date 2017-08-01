@@ -36,6 +36,14 @@
     <Property Name="isinhomepage" Type="bit" />
     <Property Name="productType" Type="int" />
   </EntityType>
+  <EntityType Name="productSubImages">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="imageUrl" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="productId" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="user">
     <Key>
       <PropertyRef Name="id" />
@@ -79,6 +87,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_productSubImages_products">
+    <End Role="products" Type="Self.products" Multiplicity="1" />
+    <End Role="productSubImages" Type="Self.productSubImages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="productSubImages">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_usertobasket_products">
     <End Role="products" Type="Self.products" Multiplicity="1" />
     <End Role="usertobasket" Type="Self.usertobasket" Multiplicity="*" />
@@ -95,6 +115,7 @@
     <EntitySet Name="productdetail" EntityType="Self.productdetail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="productinfo" EntityType="Self.productinfo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="productSubImages" EntityType="Self.productSubImages" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="usertobasket" EntityType="Self.usertobasket" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_productdetail_products" Association="Self.FK_productdetail_products">
@@ -104,6 +125,10 @@
     <AssociationSet Name="FK_productinfo_products1" Association="Self.FK_productinfo_products1">
       <End Role="products" EntitySet="products" />
       <End Role="productinfo" EntitySet="productinfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_productSubImages_products" Association="Self.FK_productSubImages_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="productSubImages" EntitySet="productSubImages" />
     </AssociationSet>
     <AssociationSet Name="FK_usertobasket_products" Association="Self.FK_usertobasket_products">
       <End Role="products" EntitySet="products" />

@@ -17,6 +17,7 @@
       },
       {
          "id":2,
+         "database_id":2,
          "name":"RS Tees",
          "price":210,
          "category": "clothes",
@@ -30,6 +31,7 @@
       },
       {
          "id":3,
+         "database_id":1,
          "name":"ZT Tees",
          "price":210,
          "category": "clothes",

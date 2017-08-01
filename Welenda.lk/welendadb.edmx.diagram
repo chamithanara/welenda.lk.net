@@ -4,14 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f53c03ed60be436f9c1028c2488b8288" Name="Diagram1">
-        <EntityTypeShape EntityType="welendadbModel.productdetail" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="welendadbModel.productinfo" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="welendadbModel.product" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+      <Diagram DiagramId="fea58639ec4b431097385bc8608deb16" Name="Diagram1">
+        <EntityTypeShape EntityType="welendadbModel.productdetail" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="welendadbModel.productinfo" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="welendadbModel.product" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="welendadbModel.productSubImage" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="welendadbModel.user" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="welendadbModel.usertobasket" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="welendadbModel.usertobasket" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
         <AssociationConnector Association="welendadbModel.FK_productdetail_products" ManuallyRouted="false" />
         <AssociationConnector Association="welendadbModel.FK_productinfo_products1" ManuallyRouted="false" />
+        <AssociationConnector Association="welendadbModel.FK_productSubImages_products" ManuallyRouted="false" />
         <AssociationConnector Association="welendadbModel.FK_usertobasket_products" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

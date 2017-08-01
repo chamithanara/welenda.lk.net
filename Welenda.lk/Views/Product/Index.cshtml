@@ -16,7 +16,7 @@
                 <div class="row" id="productMain">
                     <div class="col-sm-4 zoom_img">
                         <div id="mainImage">
-                            <img style="max-width: 100%; height: 266px;display: block; margin: 0 auto;" src="~/DesingSource/data/products/t_shirts/@ViewBag.prodMainDetails.mainimageurl.Trim()-1.png" alt="" class="img-responsive">
+                            <img style="max-width: 100%; height: 266px;display: block; margin: 0 auto;" src="~/Content/img/Products/t_shirts/@ViewBag.prodMainDetails.mainimageurl.Trim()/@ViewBag.prodMainDetails.mainimageurl.Trim()-1.png" alt="" class="img-responsive">
                         </div>
 
                         <div class="ribbon sale">
@@ -45,6 +45,11 @@
                                 @{
                                     <a ng-click="addToBasket('@(ViewBag.prodSubDetails.title)', '@(ViewBag.prodSubDetails.id)')" class="btn btn-default"><i class="fa fa-shopping-cart"></i> Add to cart</a>
                                     <a href="@Url.Action("Index", "Basket")" class="btn btn-default"><i class="fa fa-heart"></i> Add to wishlist</a>
+
+                                  if (@ViewBag.prodSubDetails.productType == 0)
+                                  {
+                                     <a href="@Url.Action("Index", "CustomDesigner", new { productId = @ViewBag.prodSubDetails.id })"  style="background: #4fbfa8; color: #ffffff" class="btn btn-default"><i class="fa fa-scissors"></i> Customize </a>
+                                  }
                                 }
                             </p>
                         </div>                    
@@ -54,18 +59,18 @@
                         <div class="col-sm-5" style="margin-left: 14px;">
                             <div class="row" id="thumbs">
                                 <div class="col-xs-2" style="text-align:center">
-                                    <a href="~/DesingSource/data/products/t_shirts/@ViewBag.prodMainDetails.mainimageurl.Trim()-1.png" class="thumb">
-                                        <img src="~/DesingSource/data/products/t_shirts/@ViewBag.prodMainDetails.subimageurl.Trim()-1.png" alt="" class="img-responsive">
+                                    <a href="~/Content/img/Products/t_shirts/@ViewBag.prodMainDetails.mainimageurl.Trim()/@ViewBag.prodMainDetails.mainimageurl.Trim()-1.png" class="thumb">
+                                        <img src="~/Content/img/Products/t_shirts/@ViewBag.prodMainDetails.subimageurl.Trim()/@ViewBag.prodMainDetails.subimageurl.Trim()-1.png" alt="" class="img-responsive">
                                     </a>
                                 </div>
                                 <div class="col-xs-2">
-                                    <a href="~/DesingSource/data/products/t_shirts/@ViewBag.prodMainDetails.mainimageurl.Trim()-2.png" class="thumb">
-                                        <img src="~/DesingSource/data/products/t_shirts/@ViewBag.prodMainDetails.subimageurl.Trim()-2.png" alt="" class="img-responsive">
+                                    <a href="~/Content/img/Products/t_shirts/@ViewBag.prodMainDetails.mainimageurl.Trim()/@ViewBag.prodMainDetails.mainimageurl.Trim()-2.png" class="thumb">
+                                        <img src="~/Content/img/Products/t_shirts/@ViewBag.prodMainDetails.subimageurl.Trim()/@ViewBag.prodMainDetails.subimageurl.Trim()-2.png" alt="" class="img-responsive">
                                     </a>
                                 </div>
                                 <div class="col-xs-2">
-                                    <a href="~/DesingSource/data/products/t_shirts/@ViewBag.prodMainDetails.mainimageurl.Trim()-3.png" class="thumb">
-                                        <img src="~/DesingSource/data/products/t_shirts/@ViewBag.prodMainDetails.subimageurl.Trim()-3.png" alt="" class="img-responsive">
+                                    <a href="~/Content/img/Products/t_shirts/@ViewBag.prodMainDetails.mainimageurl.Trim()/@ViewBag.prodMainDetails.mainimageurl.Trim()-3.png" class="thumb">
+                                        <img src="~/Content/img/Products/t_shirts/@ViewBag.prodMainDetails.subimageurl.Trim()/@ViewBag.prodMainDetails.subimageurl.Trim()-3.png" alt="" class="img-responsive">
                                     </a>
                                 </div>
                             </div>
@@ -101,7 +106,7 @@
                     }
                 </div>
 
-                <div class="row same-height-row">
+                @*<div class="row same-height-row">
                     <div class="col-md-12 col-sm-6">
                         <div class="box same-height" style="height: 59px;">
                             <h4>You may also like these products</h4>
@@ -191,7 +196,7 @@
                         <!-- /.product -->
                     </div>
 
-                </div>
+                </div>*@
             </div>
             <!-- /.col-md-9 -->
         </div>

@@ -198,8 +198,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AndumDesignerController.cs" />
-    <Compile Include="Controllers\AndumHomeController.cs" />
+    <Compile Include="Controllers\CustomDesignerController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BasketController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
@@ -229,6 +228,9 @@
       <DependentUpon>welendaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="productinfo.cs">
+      <DependentUpon>welendaDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productSubImage.cs">
       <DependentUpon>welendaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -316,6 +318,13 @@
     <Content Include="Content\img\Products\product01\info2.jpg" />
     <Content Include="Content\img\Products\product01\info3.jpg" />
     <Content Include="Content\img\Products\product01\info7.jpg" />
+    <Content Include="Content\img\Products\t_shirts\1\1-1.png" />
+    <Content Include="Content\img\Products\t_shirts\1\1-2.png" />
+    <Content Include="Content\img\Products\t_shirts\1\1-3.png" />
+    <Content Include="Content\img\Products\t_shirts\1\1.png" />
+    <Content Include="Content\img\Products\t_shirts\2\2-1.png" />
+    <Content Include="Content\img\Products\t_shirts\2\2-2.png" />
+    <Content Include="Content\img\Products\t_shirts\2\2.png" />
     <Content Include="Content\img\slider1.jpg" />
     <Content Include="Content\img\slider2.jpg" />
     <Content Include="Content\img\slider3.jpg" />
@@ -719,16 +728,6 @@
     <Content Include="Scripts\mainDesigner.js" />
     <Content Include="Scripts\rgbcolor.js" />
     <Content Include="Scripts\rotatable.js" />
-    <Content Include="welendaDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>welendaDB.edmx</DependentUpon>
-      <LastGenOutput>welendaDB.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="welendaDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>welendaDB.edmx</DependentUpon>
-      <LastGenOutput>welendaDB.cs</LastGenOutput>
-    </Content>
     <Content Include="DesingSource\scss\custom.scss" />
     <Content Include="DesingSource\scss\style.scss" />
     <Content Include="DesingSource\inc\save_design.php" />
@@ -791,6 +790,16 @@
     <Content Include="DesingSource\data\products\8.json" />
     <Content Include="DesingSource\data\products\9.json" />
     <Content Include="DesingSource\data\products\load_products.json" />
+    <Content Include="welendaDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>welendaDB.edmx</DependentUpon>
+      <LastGenOutput>welendaDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="welendaDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>welendaDB.edmx</DependentUpon>
+      <LastGenOutput>welendaDB.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -836,8 +845,7 @@
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Basket\Index.cshtml" />
     <Content Include="Views\Checkout\Index.cshtml" />
-    <Content Include="Views\AndumHome\index.cshtml" />
-    <Content Include="Views\AndumDesigner\index.cshtml" />
+    <Content Include="Views\CustomDesigner\index.cshtml" />
     <EntityDeploy Include="welendaDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>welendaDB.Designer.cs</LastGenOutput>

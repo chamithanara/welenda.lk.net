@@ -29,6 +29,7 @@
 <script type="text/javascript" src="~/DesingSource/js/bootstrap.min.js"></script>
  
 <div style="margin-bottom: 20px;" class="container ng-scope" ng-controller="ProductCtrl" id="productApp">
+    <div style="display: none">{{productId=@ViewBag.productId}}</div>
     <div ng-show="loading" class="loading">
         <h1 class="lodingMessage">Desinger Loading<img src="~/DesingSource/images/ajax-loader.gif" /></h1>
     </div>
@@ -37,35 +38,48 @@
         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 editor_section">
             <div id="content" class="tabing">
                 <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-                    <li class="active"><a ng-click="deactivateAll()" href="#Products" class="products" data-toggle="tab"><i class="glyphicon glyphicon-shopping-cart"></i>Products</a></li>
-                    <li><a ng-click="deactivateAll()" href="#Graphics" class="graphics" data-toggle="tab"><i class="glyphicon glyphicon-camera"></i>Graphics</a></li>
+                    @{ if (@ViewBag.productId == -1000) {
+                            <li class="active"><a ng-click="deactivateAll()" href="#Products" class="products" data-toggle="tab"><i class="glyphicon glyphicon-shopping-cart"></i>Products</a></li>
+                            <li><a ng-click="deactivateAll()" href="#Graphics" class="graphics" data-toggle="tab"><i class="glyphicon glyphicon-camera"></i>Graphics</a></li>
+                        }
+                        else
+                        {
+                            <li class="active"><a ng-click="deactivateAll()" href="#Graphics" class="graphics" data-toggle="tab"><i class="glyphicon glyphicon-camera"></i>Graphics</a></li>
+                        }
+                    }
+                    
                     <li><a ng-click="addTextByAction()" href="#Text" class="text" data-toggle="tab"><i class="glyphicon glyphicon-text-size"></i>Text</a></li>
                 </ul>
                 <div id="my-tab-content" class="tab-content action_tabs">
-                    <div class="tab-pane active clearfix" id="Products">
-                        <h1>Products</h1>
-                        <div class="col-lg-12">
-                            <md-input-container>
-                                <label>Sort by category</label>
-                                <md-select ng-model="productCategory">
-                                    <md-option ng-repeat="productCategory in productCategories" value="{{productCategory}}" ng-click="prodctByCat(productCategory);">{{productCategory}}</md-option>
-                                </md-select>
-                            </md-input-container>
-                        </div>
-                        <div class="col-lg-12 thumb_listing">
-                            <ul>
-                                <li ng-repeat="prod in products | orderBy:predicate:reverse" ng-class="(defaultProductId == prod.id) ? 'selected' : ''" ng-if="hasCategory(prod)">
-                                    <a href="javascript:void(0);" ng-click="loadProduct(prod.name, prod.image, prod.id, prod.price, prod.currency);">
-                                        <img data-ng-src="{{prod.image}}" alt="" />
-                                    </a>
-                                    <span class="product_cat">{{prod.category}}</span>
-                                    <span class="product_title">{{prod.name}}</span>
-                                    <span class="product_price">{{prod.price}} {{prod.currency}}</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="tab-pane clearfix" id="Graphics">
+                    @{ if (@ViewBag.productId == -1000)
+                        {
+                            <div class="tab-pane active clearfix" id="Products">
+                                <h1>Products</h1>
+                                <div class="col-lg-12">
+                                    <md-input-container>
+                                        <label>Sort by category</label>
+                                        <md-select ng-model="productCategory">
+                                            <md-option ng-repeat="productCategory in productCategories" value="{{productCategory}}" ng-click="prodctByCat(productCategory);">{{productCategory}}</md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-lg-12 thumb_listing">
+                                    <ul>
+                                        <li ng-repeat="prod in products | orderBy:predicate:reverse" ng-class="(defaultProductId == prod.id) ? 'selected' : ''" ng-if="hasCategory(prod)">
+                                            <a href="javascript:void(0);" ng-click="loadProduct(prod.title, prod.imgUrl, prod.id, prod.newprice, 'Rs.');">
+                                                <img data-ng-src="{{prod.imgUrl}}" alt="" />
+                                            </a>
+                                            <span class="product_cat">{{prod.category}}</span>
+                                            <span class="product_title">{{prod.title}}</span>
+                                            <span class="product_price">{{prod.newprice}} {{prod.currency}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        }
+                    }
+        
+                    <div class="tab-pane clearfix" id="Graphics" ng-class="@ViewBag.productId != -1000 ? 'active' : ''">
 
                         <div class="graphic_options clearfix">
                             <ul>
@@ -141,7 +155,7 @@
                                 <div class="col-lg-12 thumb_listing">
                                     <div class="well">
                                         <form name="myForm">
-                                            <div class="fileUpload btn btn-primary">
+                                            <div class="fileUpload btn btn-primary" style="background: #26C4E2 !important; color: #ffffff !important;">
                                                 <span>Choose File</span>
                                                 <input type="file" ngf-select="onFileSelect(picFile);" ng-model="picFile" name="file" accept="image/*" ngf-max-size="2MB" class="upload" />
                                             </div>
@@ -231,6 +245,7 @@
 
 
                     </div>
+                    
                     <div class="tab-pane clearfix" id="Text">
                         <div class="graphic_options clearfix">
                             <ul>
@@ -535,8 +550,8 @@
                     </div>
                     <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12 clearfix pricing">
                         <div class="col-lg-12 col-me-12 com-sm-12 col-xs-12">
-                            <span class="price_title">Price</span>
-                            <span class="price_amnt">{{defaultPrice}} {{defaultCurrency}}</span>
+                            <span class="price_title">Price : </span>
+                            <span class="price_amnt">{{defaultCurrency}} {{defaultPrice}}</span>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">

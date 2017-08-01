@@ -19,11 +19,11 @@
       "loadMore":true,
       "graphicsPage" : 1,
       "defaultProductId" : 1,
-      "defaultProductImage" : "DesingSource\/data\/products\/t_shirts\/20.png",
+      "defaultProductImage" : "Content\/img\/Products\/t_shirts\/1\/1.png",
       "quantity" : 1,
-      "defaultPrice" : 210,
-      "defaultCurrency" : "USD",
-      "defaultProductTitle" : "Tees Nues",
+      "defaultPrice" : 1100,
+      "defaultCurrency" : "Rs.",
+      "defaultProductTitle" : "Mens Round Neck T-Shirt - Maroon",
       "qrCode" : "qrcode",
       "enter_drawing_mode" : "Enter Drawing Mode",
       "drawing_mode_selector" : "Pencil",
@@ -45,8 +45,7 @@
       "productCategories":{
         "All" : "All",
         "Clothes" : "Clothes",
-        "Bottles" : "Bottles",
-        "Others" : "Others"
+        "Bottles" : "Mugs"
       },
       "productByName": "DESC",
       "productByNames":{
@@ -57,7 +56,7 @@
       "reverse": false
     },
     "social_settings" : {
-      "fb_app_id" : 101994476846984
+      "fb_app_id" : 166576847215015
     }
   },
   "message":"Settings Loaded Successfully"

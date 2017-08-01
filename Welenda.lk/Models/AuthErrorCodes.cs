@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Welenda.lk.Models
 {
-    class AuthErrorCodes
+    public class AuthErrorCodes
     {
         public enum ErrorCodes
         {

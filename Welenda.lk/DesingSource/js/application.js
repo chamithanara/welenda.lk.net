@@ -7,7 +7,7 @@ var app = angular.module('welendaApp', ['auth.services', 'common.fabric',
     'colorpicker.module',
     'ngSanitize',
     'ngMaterial',
-    'ngScrollbar',
+    //ngScrollbar',
     'ngFileUpload']);
     var productdId = null;
 
@@ -156,7 +156,7 @@ var app = angular.module('welendaApp', ['auth.services', 'common.fabric',
                                     window.setTimeout(notification, 3000);
                                 }
                                 else if (data.errorCode == 5) {
-                                    alertify.alert('Item Already Exists', 'You have already added this item to the cart. Go to Shopping cart to change the product quantity...', function () { });
+                                    alertify.alert('Item Already Exists', 'You have already added this item to the cart.', function () { });
                                 }
                                 else {
                                     alert('An error occured. Please try again later.');
@@ -381,6 +381,8 @@ var app = angular.module('welendaApp', ['auth.services', 'common.fabric',
             $scope.graphics = [];
             $scope.objectLayers = [];
             $scope.isloaded = true;
+            $scope.productId = -1000;
+            $scope.loadedProductId = null,
             $scope.alertMessage = '';
             $scope.activeDesignObject = 0;
             $scope.isMenuClicked = true;
@@ -796,60 +798,64 @@ var app = angular.module('welendaApp', ['auth.services', 'common.fabric',
 
                 if ($scope.fabric.checkBackgroundImage()) {
 
-                    $scope.beforeSave();
-                    var objects_svg = $scope.fabric.designedSVGObjects;
+                    //$scope.beforeSave();
+                    //var objects_svg = $scope.fabric.designedSVGObjects;
 
-                    $http({
-                        method: 'post',
-                        url: $scope.REQUEST_URL.SAVE_DESIGN,
-                        data: {
-                            type: 'svg',
-                            object: JSON.stringify(objects_svg)
-                        },
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        transformRequest: _this.transformRequest
-                    }).success(function (data, status, headers, config) {
+                    //$http({
+                    //    method: 'post',
+                    //    url: $scope.REQUEST_URL.SAVE_DESIGN,
+                    //    data: {
+                    //        type: 'svg',
+                    //        object: JSON.stringify(objects_svg)
+                    //    },
+                    //    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    //    transformRequest: _this.transformRequest
+                    //}).success(function (data, status, headers, config) {
 
-                    }).error(function (data, status, headers, config) {
-                        $scope.$broadcast("AjaxCallHappened", false);
-                    });
+                    //}).error(function (data, status, headers, config) {
+                    //    $scope.$broadcast("AjaxCallHappened", false);
+                    //});
 
                     $scope.beforeSave();
                     var objects_png = $scope.fabric.designedPNGObjects;
 
                     $http({
                         method: 'post',
-                        url: $scope.REQUEST_URL.SAVE_DESIGN,
+                        contentType: 'application/json',
+                        type:'json',
+                        traditional: true,
+                        url: '/CustomDesigner/saveOrder',
                         data: {
-                            type: 'png',
-                            object: JSON.stringify(objects_png)
-                        },
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        transformRequest: _this.transformRequest
+                            productId: $scope.loadedProductId,
+                            object1: objects_png[0],
+                            object2: objects_png[1],
+                            object3: objects_png[2],
+                            object4: objects_png[3],
+                        } , 
                     }).success(function (data, status, headers, config) {
+                        var s = data;
 
                     }).error(function (data, status, headers, config) {
                         $scope.$broadcast("AjaxCallHappened", false);
                     });
 
-                    $scope.beforeSave();
-                    var objects_jpg = $scope.fabric.designedJPGObjects;
+                    //$scope.beforeSave();
+                    //var objects_jpg = $scope.fabric.designedJPGObjects;
 
-                    $http({
-                        method: 'post',
-                        url: $scope.REQUEST_URL.SAVE_DESIGN,
-                        data: {
-                            type: 'jpg',
-                            object: JSON.stringify(objects_jpg)
-                        },
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        transformRequest: _this.transformRequest
-                    }).success(function (data, status, headers, config) {
+                    //$http({
+                    //    method: 'post',
+                    //    url: $scope.REQUEST_URL.SAVE_DESIGN,
+                    //    data: {
+                    //        type: 'jpg',
+                    //        object: JSON.str ingify(objects_jpg)
+                    //    },
+                    //    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    //    transformRequest: _this.transformRequest
+                    //}).success(function (data, status, headers, config) {
 
-                    }).error(function (data, status, headers, config) {
-                        $scope.$broadcast("AjaxCallHappened", false);
-                    });
-
+                    //}).error(function (data, status, headers, config) {
+                    //    $scope.$broadcast("AjaxCallHappened", false);
+                    //});
 
                     $scope.objectLayers = [];
                     $scope.objectLayers = $scope.fabric.canvasLayers();
@@ -864,10 +870,10 @@ var app = angular.module('welendaApp', ['auth.services', 'common.fabric',
                 if ($scope.fabric.checkBackgroundImage()) {
 
                     $scope.beforeSave();
-                    var objects = $scope.fabric.designedSVGObjects;
+                    //var objects = $scope.fabric.designedSVGObjects;
 
                     var element = document.createElement('a');
-                    element.setAttribute('href', encodeURI(objects[0]));
+                    element.setAttribute('href', encodeURI($scope.fabric.designedSVGObjects[$scope.activeDesignObject]));
                     element.setAttribute('download', "design.svg");
                     element.click();
 
@@ -876,7 +882,7 @@ var app = angular.module('welendaApp', ['auth.services', 'common.fabric',
                             .parent(angular.element(document.querySelector('#popupContainer')))
                             .clickOutsideToClose(true)
                             .title('Design Saved')
-                            .textContent('Design has been saved.')
+                            .textContent('Design has been saved as a SVG.')
                             .ariaLabel('Success')
                             .ok('Got it!')
                     );
@@ -917,10 +923,10 @@ var app = angular.module('welendaApp', ['auth.services', 'common.fabric',
 
                 if ($scope.fabric.checkBackgroundImage()) {
                     $scope.beforeSave();
-                    var objects = $scope.fabric.designedPNGObjects;
+                    //var objects = $scope.fabric.designedPNGObjects;
 
                     var element = document.createElement('a');
-                    element.setAttribute('href', encodeURI(objects[0]));
+                    element.setAttribute('href', encodeURI($scope.fabric.designedPNGObjects[$scope.activeDesignObject]));
                     element.setAttribute('download', "design.png");
                     element.click();
 
@@ -929,7 +935,7 @@ var app = angular.module('welendaApp', ['auth.services', 'common.fabric',
                             .parent(angular.element(document.querySelector('#popupContainer')))
                             .clickOutsideToClose(true)
                             .title('Design Saved')
-                            .textContent('Design has been saved.')
+                            .textContent('Design has been saved as a PNG.')
                             .ariaLabel('Success')
                             .ok('Got it!')
                     );
@@ -974,7 +980,7 @@ var app = angular.module('welendaApp', ['auth.services', 'common.fabric',
                     var objects = $scope.fabric.designedJPGObjects;
 
                     var element = document.createElement('a');
-                    element.setAttribute('href', encodeURI(objects[0]));
+                    element.setAttribute('href', encodeURI($scope.fabric.designedJPGObjects[$scope.activeDesignObject]));
                     element.setAttribute('download', "design.jpg");
                     element.click();
 
@@ -983,7 +989,7 @@ var app = angular.module('welendaApp', ['auth.services', 'common.fabric',
                             .parent(angular.element(document.querySelector('#popupContainer')))
                             .clickOutsideToClose(true)
                             .title('Design Saved')
-                            .textContent('Design has been saved.')
+                            .textContent('Design has been saved as a JPG.')
                             .ariaLabel('Success')
                             .ok('Got it!')
                     );
@@ -1153,10 +1159,6 @@ var app = angular.module('welendaApp', ['auth.services', 'common.fabric',
                 }
             };
 
-
-
-
-
             $scope.$on('AjaxCallHappened', function (event, data) {
                 if (data.status == true) {
                     _this.showNotification(data.message, false);
@@ -1214,10 +1216,7 @@ var app = angular.module('welendaApp', ['auth.services', 'common.fabric',
                 $scope.fabric.selectedObject.opacity = value;
             };
 
-
-
             $scope.deleteObject = function (object) {
-
                 var confirm = $mdDialog.confirm()
                     .title('')
                     .content('Are you sure you want to remove selected object?')
@@ -1334,6 +1333,7 @@ var app = angular.module('welendaApp', ['auth.services', 'common.fabric',
             };
 
             $scope.loadProduct = function (title, image, id, price, currency, indexKey) {
+                $scope.loadedProductId = id;
                 //indexKey = null;
                 $scope.counter = 1;
                 if (indexKey != null) {
@@ -1349,6 +1349,7 @@ var app = angular.module('welendaApp', ['auth.services', 'common.fabric',
                         $scope.objectLayers = $scope.fabric.canvasLayers();
                     } else {
                         $scope.clearCanvas();
+
                         $scope.fabric.addCanvasBackground(image);
                         $scope.objectLayers = [];
                         $scope.objectLayers = $scope.fabric.canvasLayers();
@@ -1370,7 +1371,7 @@ var app = angular.module('welendaApp', ['auth.services', 'common.fabric',
                     $scope.orignalPrice = price;
                     $scope.defaultCurrency = currency;
                     $scope.defaultProductTitle = title;
-                    _this.initProductSubImages(id);
+                     _this.initProductSubImages(id);
                 }
                 $scope.isloaded = true;
                 $scope.$broadcast('rebuild:me');
@@ -1378,21 +1379,21 @@ var app = angular.module('welendaApp', ['auth.services', 'common.fabric',
 
             this.initProductSubImages = function (id) {
                 $http({
-                    method: 'get',
-                    url: $scope.REQUEST_URL.LOAD_PRODUCT_SUB_IMAGES + id + '.json',
-                    dataType: 'json',
-                    headers: { 'Content-Type': 'application/json' }
+                    method: 'post',
+                    contentType: 'application/json',
+                    type: 'json',
+                    traditional: true,
+                    url: '/CustomDesigner/getSubImages',
+                    data: { prodId: id },
                 }).success(function (data, status, headers, config) {
                     $scope.defaultProductId = id;
-                    $scope.productImages = data.images;
+                    $scope.productImages = data.result;
                     $scope.fabric.designedObjects = {};
                     $.each($scope.productImages, function (index, value) {
                         $scope.fabric.designedObjects[index] = null;
-
                         $scope.fabric.designedSVGObjects[index] = null;
                         $scope.fabric.designedPNGObjects[index] = null;
                         $scope.fabric.designedPNGObjects[index] = null;
-
                     });
 
                     $scope.objectLayers = [];
@@ -1511,15 +1512,28 @@ var app = angular.module('welendaApp', ['auth.services', 'common.fabric',
             this.initProducts = function () {
                 $scope.productCategory = "all";
                 $http({
-                    method: 'get',
-                    url: $scope.REQUEST_URL.LOAD_PRODUCTS,
-                    dataType: 'json',
-                    headers: { 'Content-Type': 'application/json' }
-                }).success(function (data, status, headers, config) {
-
-                    $scope.products = data.products;
+                    type: "POST",
+                    dataType: "json",
+                    //url: $scope.REQUEST_URL.LOAD_PRODUCTS,
+                    headers: { 'Content-Type': 'application/json' },
+                    url: '/CustomDesigner/getProducts',
+                }).success(function (data) {
+                    // $scope.products = data.products;
+                    if ($scope.productId == -1000) {
+                        $scope.products = data.productsList;
+                        $scope.loadProduct($scope.defaultProductTitle, $scope.defaultProductImage, $scope.defaultProductId, $scope.defaultPrice, $scope.defaultCurrency);
+                    }
+                    else {
+                        for (var i = 0; i < data.productsList.length ; i++) {
+                            if (data.productsList[i].id == $scope.productId) {
+                                $scope.products = data.productsList[i];
+                                break;  
+                            }
+                        }
+                        $scope.loadProduct($scope.products.title, $scope.products.imgUrl, $scope.products.id, $scope.products.newprice, 'Rs.');
+                    }
+                    
                     $scope.isloaded = false;
-                    $scope.$broadcast("AjaxCallHappened", data);
                 }).error(function (data, status, headers, config) {
                     $scope.isloaded = false;
                     $scope.$broadcast("AjaxCallHappened", false);
@@ -1629,7 +1643,6 @@ var app = angular.module('welendaApp', ['auth.services', 'common.fabric',
 
                     //$scope.changeColorScheme();
                     _this.initProducts();
-                    $scope.loadProduct($scope.defaultProductTitle, $scope.defaultProductImage, $scope.defaultProductId, $scope.defaultPrice, $scope.defaultCurrency);
                     _this.initGraphics();
                     $scope.fabric.readyHandTool($scope.drawing_mode_selector, $scope.drawing_color, $scope.drawing_line_width, $scope.drawing_line_shadow);
 

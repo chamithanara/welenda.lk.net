@@ -18,7 +18,7 @@
                         <img class="img-responsive sliderHeight" src="~/Content/img/main-slider2.jpg" alt="">
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>*@
 
 
@@ -52,7 +52,7 @@
                             <div class="col-md-12" style="margin-bottom: 38px;">
                                 <h4 style="font-size:17px; color:#246777; margin-bottom: 29px;margin-top: -4px;">Click Here to Create a New T-Shirt Design. Let's Get Creative.</h4>
 
-                                <a class="buttonAndum" href="@Url.Action("Index", "AndumDesigner")">
+                                <a class="buttonAndum" href="@Url.Action("Index", "CustomDesigner", new { productId = -1000})">
                                     <span>Design Your Own</span>
                                 </a>
                             </div>
@@ -77,13 +77,13 @@
                                             <div class="flipper">
                                                 <div class="front">
                                                     <div href="detail.html">
-                                                        <img ng-src="~/DesingSource/data/products/t_shirts/{{value[1]}}" alt="" class="img-responsive">
+                                                        <img ng-src="~/{{value[1]}}" alt="" class="img-responsive">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div href="detail.html" class="invisible">
-                                            <img ng-src="~/DesingSource/data/products/t_shirts/{{value[1]}}" alt="" class="img-responsive">
+                                            <img ng-src="~/{{value[1]}}" alt="" class="img-responsive">
                                         </div>
                                         <div class="text">
                                             <h3>{{value[0]}}</h3>
@@ -154,13 +154,13 @@
                                             <div class="flipper">
                                                 <div class="front">
                                                     <div href="detail.html">
-                                                        <img ng-src="~/DesingSource/data/products/t_shirts/{{value[1]}}" alt="" class="img-responsive">
+                                                        <img ng-src="~/{{value[1]}}" alt="" class="img-responsive">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div href="detail.html" class="invisible">
-                                            <img ng-src="~/DesingSource/data/products/t_shirts/{{value[1]}}" alt="" class="img-responsive">
+                                            <img ng-src="~/{{value[1]}}" alt="" class="img-responsive">
                                         </div>
                                         <div class="text">
                                             <h3>{{value[0]}}</h3>
@@ -191,13 +191,13 @@
                                             <div class="flipper">
                                                 <div class="front">
                                                     <div href="detail.html">
-                                                        <img ng-src="~/DesingSource/data/products/t_shirts/{{value[1]}}" alt="" class="img-responsive">
+                                                        <img ng-src="~/{{value[1]}}" alt="" class="img-responsive">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div href="detail.html" class="invisible">
-                                            <img ng-src="~/DesingSource/data/products/t_shirts/{{value[1]}}" alt="" class="img-responsive">
+                                            <img ng-src="~/{{value[1]}}" alt="" class="img-responsive">
                                         </div>
                                         <div class="text">
                                             <h3>{{value[0]}}</h3>
@@ -229,13 +229,13 @@
                                             <div class="flipper">
                                                 <div class="front">
                                                     <div href="detail.html">
-                                                        <img ng-src="~/DesingSource/data/products/t_shirts/{{value[1]}}" alt="" class="img-responsive">
+                                                        <img ng-src="~/{{value[1]}}" alt="" class="img-responsive">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div href="detail.html" class="invisible">
-                                            <img ng-src="~/DesingSource/data/products/t_shirts/{{value[1]}}" alt="" class="img-responsive">
+                                            <img ng-src="~/{{value[1]}}" alt="" class="img-responsive">
                                         </div>
                                         <div class="text">
                                             <h3>{{value[0]}}</h3>

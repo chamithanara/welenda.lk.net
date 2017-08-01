@@ -40,6 +40,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="productSubImages">
+      <EntityTypeMapping TypeName="welendadbModel.productSubImage">
+        <MappingFragment StoreEntitySet="productSubImages">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+          <ScalarProperty Name="productId" ColumnName="productId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="users">
       <EntityTypeMapping TypeName="welendadbModel.user">
         <MappingFragment StoreEntitySet="user">
